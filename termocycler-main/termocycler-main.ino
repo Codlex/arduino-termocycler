@@ -1,11 +1,11 @@
 
 void setup() {
   initLogger();
+  logDebug("Thermocycler started");
 }
 
 void loop() {
-  logDebug("Test");
-  logError("Test2");
+  // do the work
 }
 
 
@@ -18,8 +18,9 @@ char loggerBuffer[256];
 void initLogger() {
   Serial.begin(9600);
 }
+
 void logDebug(char* message) {
-    log("DEBUG", message);
+  log("DEBUG", message);
 }
 
 void logError(char* message) {
@@ -29,7 +30,7 @@ void logError(char* message) {
 void log(char* tag, char* message) {
   sprintf(loggerBuffer, "%02d %02d:%02d:%02d,%03d [%s] %.128s\n",
             days(), hours(), minutes(), seconds(), milliseconds(), tag, message);
-    Serial.print(loggerBuffer);
+  Serial.print(loggerBuffer);
 }
 
 // </Logger>
@@ -49,12 +50,12 @@ int days() {
 }
 
 int hours() {
-    int divider = millisecondsInSecond * secondsInMinute * minutesInHour;
+  int divider = millisecondsInSecond * secondsInMinute * minutesInHour;
   return (millis() / divider) % hoursInDay;
 }
 
 int minutes() {
-    int divider = millisecondsInSecond * secondsInMinute;
+  int divider = millisecondsInSecond * secondsInMinute;
   return (millis() / divider) % minutesInHour;
 }
 
