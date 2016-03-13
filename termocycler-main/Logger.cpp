@@ -1,5 +1,6 @@
 #ifndef LOGGER_H
 #define LOGGER_H
+
 #include <stdio.h>
 #include <Arduino.h>
 #include "Time.cpp"
