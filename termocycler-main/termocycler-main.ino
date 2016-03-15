@@ -16,9 +16,10 @@ void setup() {
 }
 
 void loop() {
+  
   Input.update();
   View.update();
-  
+  Model.update();
   // logDebug("loop");
   //processInput();
   // doTheCycling();

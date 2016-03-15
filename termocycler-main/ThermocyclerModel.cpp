@@ -3,6 +3,8 @@
 
 #include "Logger.cpp"
 #include "Bath.cpp"
+#include "HotBath.cpp"
+#include "ColdBath.cpp"
 
 class ThermocyclerModel {
   private:
@@ -23,8 +25,8 @@ class ThermocyclerModel {
     int start = 0;
     
     ThermocyclerModel() {
-      this->coldBath = new Bath();
-      this->hotBath = new Bath();
+      this->coldBath = new ColdBath();
+      this->hotBath = new HotBath();
     }
     
     int* getSelected() {
@@ -67,8 +69,6 @@ class ThermocyclerModel {
     
     void exit() {
       Log.debug("exit");
-
-      
     }
 
     void confirm() {
@@ -83,6 +83,12 @@ class ThermocyclerModel {
     void back() {
       Log.debug("back");
       this->selectedInput--;  
+    }
+
+    void update() {
+      this->hotBath->update();
+      this->coldBath->update();
+      // TODO: translator  
     }
 };
 
