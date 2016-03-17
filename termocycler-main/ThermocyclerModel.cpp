@@ -25,8 +25,8 @@ class ThermocyclerModel {
     int start = 0;
     
     ThermocyclerModel() {
-      this->coldBath = new ColdBath();
-      this->hotBath = new HotBath();
+      this->coldBath = new ColdBath(0);
+      this->hotBath = new HotBath(1);
     }
     
     int* getSelected() {

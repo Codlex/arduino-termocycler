@@ -6,17 +6,19 @@
  class Bath {
   protected:
     TemperatureSensor* sensor;
-  public: 
-    Bath() {
+  public:
+    Bath(int sensorIndex) {
+      this->sensor = new TemperatureSensor(sensorIndex);
     }
-    int temperature;
-    int time;
+    int temperature = 0;
+    int time = 0;
 
     void update() {
-      keepTemperature();  
+      // keepTemperature();
+      this->temperature = (int) this->sensor->getTemperature();
     }
 
-    virtual void keepTemperature();
+    // virtual void keepTemperature();
 };
 
 #endif

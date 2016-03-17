@@ -9,8 +9,9 @@ class HotBath : public Bath {
     Heater* heater;
     
   public:
-    HotBath() {
+    HotBath(int sensorIndex) : Bath(sensorIndex) {
     }
+    
     void keepTemperature() {
       if (this->sensor->getTemperature() < this->temperature) {
         this->heater->turnOn();

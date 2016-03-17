@@ -2,31 +2,26 @@
 #define TEMPERATURE_SENSOR_H
 
 #include "Arduino.h"
+#include <OneWire.h>
+#include <DallasTemperature.h>
+
+static OneWire ds(12);
+static DallasTemperature sensors(&ds);
 
 class TemperatureSensor {
+  
   private: 
-    int sensorPin;
-    float getVoltage() {
-      int reading = analogRead(sensorPin);
-      float maxVoltage = 5.0; // for 3.3V should be 3.3
-      float voltage = reading * 5.0;
-      voltage /= 1024.0;
-      return voltage;
-    }
-
-    static float voltageToTemperature(float voltage) {
-      //converting from 10 mv per degree wit 500 mV offset
-      // to degrees ((voltage - 500mV) times 100)
-      return (voltage - 0.5) * 100 ;
-    }
+    int sensorIndex;
     
   public:
-    TemperatureSensor(int sensorPin) {
-      this->sensorPin = sensorPin;
+    TemperatureSensor(int sensorIndex) {
+      this->sensorIndex = sensorIndex;
     }
     
-    int getTemperature() {
-      return voltageToTemperature(getVoltage());
+    float getTemperature() {
+       sensors.begin();
+       sensors.requestTemperatures();
+       return sensors.getTempCByIndex(sensorIndex);
     }
 };
 

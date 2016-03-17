@@ -9,7 +9,7 @@ class ColdBath : public Bath {
     Cooler* cooler;
   
   public:
-    ColdBath() {
+    ColdBath(int sensorIndex) : Bath(sensorIndex) {
     }
     void keepTemperature() {
       if (this->sensor->getTemperature() > this->temperature) {
