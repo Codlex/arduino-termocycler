@@ -9,20 +9,20 @@ static OneWire ds(12);
 static DallasTemperature sensors(&ds);
 
 class TemperatureSensor {
-  
-  private: 
-    int sensorIndex;
-    
-  public:
-    TemperatureSensor(int sensorIndex) {
-      this->sensorIndex = sensorIndex;
-    }
-    
-    float getTemperature() {
-       sensors.begin();
-       sensors.requestTemperatures();
-       return sensors.getTempCByIndex(sensorIndex);
-    }
+
+private:
+	int sensorIndex;
+
+public:
+	TemperatureSensor(int sensorIndex) {
+		this->sensorIndex = sensorIndex;
+	}
+
+	float getTemperature() {
+		sensors.begin();
+		sensors.requestTemperatures();
+		return sensors.getTempCByIndex(sensorIndex);
+	}
 };
 
 #endif

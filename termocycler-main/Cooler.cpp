@@ -1,17 +1,20 @@
 #ifndef COOLER_H
 #define COOLER_H
 
-class Cooler {
+#import "Switch.cpp"
+#import "Logger.cpp"
 
-    public:
-      void turnOn() {
-        // do something  
-      }
+class Cooler : public Switch {
 
-      void turnOff() {
-        // do something  
-      }
-  
+public:
+	void on() {
+		Log.debug("Cooler is turned on.");
+	}
+
+	void off() {
+		Log.debug("Cooler is turned off.");
+	}
+
 };
 
 #endif
