@@ -1,5 +1,5 @@
 #include "logger/Logger.cpp"
-#include "logic/Thermocycler.cpp"
+#include "logic/Thermocycler.h"
 #include "view/ThermocyclerView.cpp"
 #include "input/Input.cpp"
 

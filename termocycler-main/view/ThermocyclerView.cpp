@@ -5,7 +5,7 @@
 #include <UTFT.h>
 
 #include "../logger/Logger.cpp"
-#include "../logic/Thermocycler.cpp"
+#include "../logic/Thermocycler.h"
 
 extern uint8_t SmallFont[];
 extern uint8_t BigFont[];

@@ -19,6 +19,19 @@ private:
 	TemperatureSensor* temperatureSensor1;
 	TemperatureSensor* temperatureSensor2;
 
+	bool isTemperatureOK() {
+		float minTemperature = this->temperature - Settings::TemperatureEpsilon;
+		float maxTemperature = this->temperature + Settings::TemperatureEpsilon;
+		float currentTemperature = getCurrentTemperature();
+		return minTemperature <= currentTemperature
+				&& currentTemperature <= maxTemperature;
+	}
+
+	bool isLevelOK() {
+		int minimumLevel = Settings::BathMinimumLevel - Settings::LevelEpsilon;
+		return this->level->getPercentageFilled() > minimumLevel;
+	}
+
 protected:
 	LevelSensor* level;
 	WaterPump* pump;
@@ -47,6 +60,10 @@ public:
 	}
 
 	virtual void keepTemperature() = 0;
+
+	bool isReady() {
+		return isTemperatureOK() && isLevelOK();
+	}
 
 };
 

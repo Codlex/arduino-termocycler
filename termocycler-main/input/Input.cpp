@@ -4,7 +4,7 @@
 #include <Keypad.h>
 
 #include "../logger/Logger.cpp"
-#include "../logic/Thermocycler.cpp"
+#include "../logic/Thermocycler.h"
 
 class Input {
 
