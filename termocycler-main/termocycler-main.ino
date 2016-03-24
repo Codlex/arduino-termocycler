@@ -1,12 +1,11 @@
+#include "logger/Logger.cpp"
+#include "logic/Thermocycler.cpp"
+#include "view/ThermocyclerView.cpp"
+#include "input/Input.cpp"
 
-#include "Logger.cpp"
-#include "ThermocyclerModel.cpp"
-#include "ThermocyclerView.cpp"
-#include "Input.cpp"
-
-ThermocyclerModel Model;
-ThermocyclerView View(&Model);
-Input Input(&Model);
+Thermocycler Thermocycler;
+ThermocyclerView View(&Thermocycler);
+Input Input(&Thermocycler);
 
 
 void setup() {
@@ -20,7 +19,7 @@ void setup() {
 void loop() {
   // Input.update();
   // View.update();
-  Model.update();
+  Thermocycler.update();
 
 
   // Log.debug(buff);

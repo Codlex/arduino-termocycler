@@ -1,8 +1,8 @@
 #ifndef COOLER_H
 #define COOLER_H
 
-#import "Switch.cpp"
-#import "Logger.cpp"
+#include "../../../logger/Logger.cpp"
+#include "../../Switch.cpp"
 
 class Cooler : public Switch {
 

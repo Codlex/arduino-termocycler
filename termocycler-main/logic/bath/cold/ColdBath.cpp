@@ -1,11 +1,11 @@
 #ifndef COLD_BATH_H
 #define COLD_BATH_H
 
-#include "Bath.cpp"
+#include "../../Settings.cpp"
+#include "../Bath.cpp"
 #include "Cooler.cpp"
-#include "Settings.cpp"
 
-class ColdBath: public Bath {
+class ColdBath : public Bath {
 private:
 	Cooler* cooler;
 

@@ -1,12 +1,10 @@
-#ifndef THERMOCYCLER_MODEL_H
-#define THERMOCYCLER_MODEL_H
+#ifndef THERMOCYCLER_CPP
+#define THERMOCYCLER_CPP
 
-#include "Logger.cpp"
-#include "Bath.cpp"
-#include "HotBath.cpp"
-#include "ColdBath.cpp"
+#include "../logger/Logger.cpp"
+#include "bath/BathFactory.cpp"
 
-class ThermocyclerModel {
+class Thermocycler {
 private:
 	int selectedInput = 1;
 
@@ -23,9 +21,9 @@ public:
 	int cycles = 0;
 	int start = 0;
 
-	ThermocyclerModel() {
-		this->coldBath = new ColdBath();
-		this->hotBath = new HotBath();
+	Thermocycler() {
+		this->coldBath = BathFactory::createCold();
+		this->hotBath = BathFactory::createHot();
 	}
 
 	int* getSelected() {

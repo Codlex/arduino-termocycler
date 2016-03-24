@@ -1,10 +1,9 @@
 #ifndef HOT_BATH_H
 #define HOT_BATH_H
 
-#include "Bath.cpp"
+#include "../../Settings.cpp"
+#include "../Bath.cpp"
 #include "Heater.cpp"
-#include "Logger.cpp"
-#include "Settings.cpp"
 
 class HotBath: public Bath {
 private:

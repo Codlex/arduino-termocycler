@@ -3,8 +3,9 @@
 
 #include <Arduino.h>
 #include <UTFT.h>
-#include "ThermocyclerModel.cpp"
-#include "Logger.cpp"
+
+#include "../logger/Logger.cpp"
+#include "../logic/Thermocycler.cpp"
 
 extern uint8_t SmallFont[];
 extern uint8_t BigFont[];
@@ -12,11 +13,11 @@ extern uint8_t SevenSegNumFont[];
 
 class ThermocyclerView {
 private:
-	ThermocyclerModel* model;
+	Thermocycler* model;
 	UTFT* screen = new UTFT(ILI9481, 38, 39, 40, 41);
 
 public:
-	ThermocyclerView(ThermocyclerModel* model) {
+	ThermocyclerView(Thermocycler* model) {
 		this->model = model;
 	}
 

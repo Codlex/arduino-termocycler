@@ -1,9 +1,9 @@
 #ifndef BATH_H
 #define BATH_H
 
-#include "TemperatureSensor.cpp"
-#include "LevelSensor.cpp"
-#include "Settings.cpp"
+#include "../Settings.cpp"
+#include "sensors/TemperatureSensor.cpp"
+#include "sensors/LevelSensor.cpp"
 #include "WaterPump.cpp"
 
 class Bath {

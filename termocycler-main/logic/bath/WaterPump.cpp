@@ -1,8 +1,8 @@
 #ifndef WATER_PUMP_CPP
 #define WATER_PUMP_CPP
 
-#import "Switch.cpp"
-#import "Logger.cpp"
+#include "../../logger/Logger.cpp"
+#include "../Switch.cpp"
 
 class WaterPump: public Switch {
 public:

@@ -1,8 +1,8 @@
 #ifndef HEATER_H
 #define HEATER_H
 
-#include "Switch.cpp"
-#include "Logger.cpp"
+#include "../../../logger/Logger.cpp"
+#include "../../Switch.cpp"
 
 class Heater: public Switch {
 

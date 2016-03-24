@@ -2,8 +2,9 @@
 #define INPUT_H
 
 #include <Keypad.h>
-#include "ThermocyclerModel.cpp"
-#include "Logger.cpp"
+
+#include "../logger/Logger.cpp"
+#include "../logic/Thermocycler.cpp"
 
 class Input {
 
@@ -13,7 +14,7 @@ private:
 	const char EXIT_KEY = 'C';
 	const char BACK_KEY = '*';
 
-	ThermocyclerModel* model;
+	Thermocycler* model;
 
 	const static byte numRows = 4; //number of rows on the keypad
 	const static byte numCols = 4; //number of columns on the keypad
@@ -30,7 +31,7 @@ private:
 
 public:
 
-	Input(ThermocyclerModel* model) {
+	Input(Thermocycler* model) {
 		this->model = model;
 	}
 
