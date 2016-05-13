@@ -4,8 +4,9 @@
 #include "Arduino.h"
 #include <OneWire.h>
 #include <DallasTemperature.h>
+#include "../../Settings.cpp"
 
-static OneWire ds(12);
+static OneWire ds(Settings::OneWireTemperatureSensor);
 static DallasTemperature sensors(&ds);
 
 class TemperatureSensor {

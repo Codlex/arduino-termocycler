@@ -9,13 +9,14 @@ private:
 	int triggerPin;
 	int echoPin;
 	int emptyDistance;
-	NewPing* sonar = new NewPing(triggerPin, echoPin);
+	NewPing* sonar;
 
 public:
 	LevelSensor(int echoPin, int triggerPin, int emptyDistance) {
 		this->triggerPin = triggerPin;
 		this->echoPin = echoPin;
 		this->emptyDistance = emptyDistance;
+		this->sonar = new NewPing(triggerPin, echoPin);
 	}
 
 	int getPercentageFilled() {
