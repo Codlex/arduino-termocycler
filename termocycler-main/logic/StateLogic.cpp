@@ -1,5 +1,9 @@
 #include "StateLogic.h"
 #include "Thermocycler.h"
+#include <stdlib.h>
+#include <stdio.h>
+
+#include "../logger/Logger.cpp"
 
 StateLogic::StateLogic(Thermocycler* thermocycler) {
 	this->thermocycler = thermocycler;
@@ -7,6 +11,8 @@ StateLogic::StateLogic(Thermocycler* thermocycler) {
 
 
 void StateLogic::changeState(State state) {
+	Log.debug("State change %d -> %d", this->currentState, state);
+
 	this->currentState = state;
 	switch (state) {
 	case State::HotBath:
@@ -28,6 +34,8 @@ void StateLogic::processNotReady() {
 	bool coldBathReady = this->thermocycler->coldBath->isReady();
 	if (hotBathReady && coldBathReady) {
 		changeState(State::HotBath);
+	} else {
+		Log.debug("Thermocycler is not ready yet.");
 	}
 }
 
@@ -84,12 +92,15 @@ void StateLogic::update(long delta) {
 
 	switch (this->currentState) {
 	case State::NotReady:
+		Log.debug("STATE_CHANGE:Warming up state.");
 		processNotReady();
 		break;
 	case State::HotBath:
+		Log.debug("STATE_CHANGE:HotBath -> ColdBath");
 		processCycling();
 		break;
 	case State::ColdBath:
+		Log.debug("STATE_CHANGE:ColdBath -> HotBath");
 		processCycling();
 		break;
 

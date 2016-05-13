@@ -25,6 +25,13 @@ public:
 			this->heater->turnOff();
 		}
 	}
+
+	void logStatus() {
+		Log.debug("HotBathStatus(temp1=%d, temp2=%d, level=%d)",
+				(int) this->temperatureSensor1->getTemperature(),
+				(int) this->temperatureSensor2->getTemperature(),
+				(int) this->level->getPercentageFilled());
+	}
 };
 
 #endif

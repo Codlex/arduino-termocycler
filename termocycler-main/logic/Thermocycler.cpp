@@ -59,6 +59,10 @@ void Thermocycler::confirm() {
 	Log.debug("confirmed");
 	this->selectedInput++;
 	this->isDirty = true;
+
+	if (this->selectedInput == STARTED) {
+		this->isStarted = true;
+	}
 }
 
 bool Thermocycler::isSelected(int* field) {
@@ -79,9 +83,11 @@ void Thermocycler::back() {
 }
 
 void Thermocycler::update() {
+	if (this->isStarted) {
+		this->stateLogic->update(100);
+		this->hotBath->update();
+		this->coldBath->update();
+		// this->translator->update(this->stateLogic->getCurrentState());
+	}
 
-	this->stateLogic->update(100);
-	this->hotBath->update();
-	this->coldBath->update();
-	// this->translator->update(this->stateLogic->getCurrentState());
 }

@@ -1,6 +1,7 @@
 #ifndef BATH_H
 #define BATH_H
 
+#include "../../logger/Logger.cpp"
 #include "../Settings.cpp"
 #include "sensors/TemperatureSensor.cpp"
 #include "sensors/LevelSensor.cpp"
@@ -16,9 +17,6 @@ private:
       }
     }
 
-	TemperatureSensor* temperatureSensor1;
-	TemperatureSensor* temperatureSensor2;
-
 	bool isTemperatureOK() {
 		float minTemperature = this->temperature - Settings::TemperatureEpsilon;
 		float maxTemperature = this->temperature + Settings::TemperatureEpsilon;
@@ -33,6 +31,8 @@ private:
 	}
 
 protected:
+	TemperatureSensor* temperatureSensor1;
+	TemperatureSensor* temperatureSensor2;
 	LevelSensor* level;
 	WaterPump* pump;
 
@@ -58,9 +58,12 @@ public:
 	void update() {
 		keepTemperature();
 		keepLevel();
+		logStatus();
 	}
 
 	virtual void keepTemperature() = 0;
+
+	virtual void logStatus() = 0;
 
 	bool isReady() {
 		return isTemperatureOK() && isLevelOK();

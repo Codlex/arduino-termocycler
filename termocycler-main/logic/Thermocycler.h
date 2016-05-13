@@ -22,6 +22,7 @@ private:
 	static const int HOT_TIME = 4;
 	static const int CYCLES = 5;
 	static const int START = 6;
+	static const int STARTED = 7;
 
 public:
 	Thermocycler();
@@ -30,6 +31,7 @@ public:
 	int cycles = 0;
 	int start = 0;
 	bool isDirty = false;
+	bool isStarted = false;
 
 	int* getSelected();
 
