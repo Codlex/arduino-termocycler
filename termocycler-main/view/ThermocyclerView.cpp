@@ -25,7 +25,10 @@ public:
 		char buffer[20];
 		sprintf(buffer, "%d", millis());
 		// screen->print(buffer, CENTER, 150);
-		updateGUI();
+		if (this->model->isDirty) {
+			updateGUI();
+			this->model->isDirty = false;
+		}
 
 	}
 

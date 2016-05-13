@@ -29,6 +29,7 @@ public:
 	Bath* hotBath;
 	int cycles = 0;
 	int start = 0;
+	bool isDirty = false;
 
 	int* getSelected();
 

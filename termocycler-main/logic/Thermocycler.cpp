@@ -33,6 +33,8 @@ void Thermocycler::enterDigit(int digit) {
 	if (selectedInput) {
 		int* selected = getSelected();
 		*selected = *selected * 10 + digit;
+		this->isDirty = true;
+		Log.debug("Digit entered!");
 
 	} else {
 		Log.error("Tried to input but no element selected");
@@ -43,6 +45,7 @@ void Thermocycler::deleteDigit() {
 	if (selectedInput) {
 		int* selected = getSelected();
 		*selected = *selected / 10;
+		this->isDirty = true;
 	} else {
 		Log.error("Tried to input but no element selected");
 	}
@@ -55,6 +58,7 @@ void Thermocycler::exit() {
 void Thermocycler::confirm() {
 	Log.debug("confirmed");
 	this->selectedInput++;
+	this->isDirty = true;
 }
 
 bool Thermocycler::isSelected(int* field) {
@@ -62,13 +66,21 @@ bool Thermocycler::isSelected(int* field) {
 }
 
 void Thermocycler::back() {
+
+	if (this->selectedInput == 1) {
+		Log.error("Can't go back no more!");
+		return;
+	}
+
 	Log.debug("back");
 	this->selectedInput--;
+	this->isDirty = true;
+
 }
 
 void Thermocycler::update() {
 
-	// this->stateLogic->update(100);
+	this->stateLogic->update(100);
 	this->hotBath->update();
 	this->coldBath->update();
 	// this->translator->update(this->stateLogic->getCurrentState());
