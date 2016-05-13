@@ -4,6 +4,10 @@
 #include <stdio.h>
 #include <Arduino.h>
 #include "Time.cpp"
+#include <stdarg.h>
+
+class Logger;
+extern Logger Log;
 
 class Logger {
 private:
@@ -21,16 +25,25 @@ public:
 		Serial.begin(9600);
 	}
 
-	void debug(char* message) {
-		log("DEBUG", message);
+	static void debug(char* messageFormat...) {
+		char buffer[256];
+		va_list args;
+		va_start(args, messageFormat);
+		vsprintf(buffer, messageFormat, args);
+		Log.log("DEBUG", buffer);
+		va_end (args);
 	}
 
-	void error(char* message) {
-		log("ERROR", message);
+	static void error(char* messageFormat...) {
+		char buffer[256];
+		va_list args;
+		va_start(args, messageFormat);
+		vsprintf(buffer, messageFormat, args);
+		Log.log("ERROR", buffer);
+		va_end (args);
 	}
+
 };
-
-extern Logger Log;
 
 #endif
 
