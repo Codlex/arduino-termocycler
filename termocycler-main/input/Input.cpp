@@ -19,12 +19,16 @@ private:
 	const static byte numRows = 4; //number of rows on the keypad
 	const static byte numCols = 4; //number of columns on the keypad
 
-	char keymap[numRows][numCols] = { { '1', '2', '3', 'A' }, { '4', '5', '6',
-			'B' }, { '7', '8', '9', 'C' }, { '*', '0', '#', 'D' } };
+	char keymap[numRows][numCols] = {
+			{ '1', '2', '3', 'A' },
+			{ '4', '5', '6', 'B' },
+			{ '7', '8', '9', 'C' },
+			{ '*', '0', '#', 'D' }
+	};
 
 	// code that shows the the keypad connections to the arduino terminals
-	byte rowPins[numRows] = { 2, 3, 4, 5 }; // rows 0 to 3
-	byte colPins[numCols] = { 6, 7, 8, 9 }; // columns 0 to 3
+	byte rowPins[numRows] = { 0, 1, 2, 3 }; // rows 0 to 3
+	byte colPins[numCols] = { 4, 5, 6, 7 }; // columns 0 to 3
 
 	Keypad myKeypad = Keypad(makeKeymap(keymap), rowPins, colPins, numRows,
 			numCols);
