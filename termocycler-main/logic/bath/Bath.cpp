@@ -52,6 +52,7 @@ public:
 		this->temperatureSensor2 = new TemperatureSensor(
 				temperatureSensorIndex2);
 		this->level = new LevelSensor(levelEchoPin, levelTriggerPin, Settings::BathDepth);
+		this->pump = new WaterPump();
 	}
 
 	void update() {
