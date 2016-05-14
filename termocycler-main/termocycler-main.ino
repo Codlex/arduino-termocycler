@@ -2,7 +2,7 @@
 #include "logic/Thermocycler.h"
 #include "view/ThermocyclerView.cpp"
 #include "input/Input.cpp"
-#include "logic/bath/sensors/LevelSensor.cpp"
+#include "logic/bath/sensors/TemperatureSensor.cpp"
 
 Thermocycler Thermocycler;
 ThermocyclerView View(&Thermocycler);
@@ -15,7 +15,7 @@ void setup() {
   Input.init();
   Log.debug("Thermocycler started");
 
-  
+  TemperatureSensor::refreshSensors();
   
 }
 
@@ -30,12 +30,14 @@ void loop() {
     Log.error("Processing took: %d millis.", deltaT);
   }
   
-  update(deltaT);
+  updatee(deltaT);
 }
 
-void update(int deltaT) {
+void updatee(int deltaT) {
 	Input.update();
   View.update();
-  Thermocycler.update();
+  Thermocycler.update(deltaT);
+  TemperatureSensor::update(deltaT);
+
 }
 

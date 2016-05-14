@@ -55,7 +55,7 @@ public:
 		this->pump = new WaterPump();
 	}
 
-	void update() {
+	void update(int deltaT) {
 		keepTemperature();
 		keepLevel();
 		logStatus();

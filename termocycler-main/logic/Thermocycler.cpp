@@ -82,11 +82,11 @@ void Thermocycler::back() {
 
 }
 
-void Thermocycler::update() {
+void Thermocycler::update(int deltaT) {
 	if (this->isStarted) {
-		this->stateLogic->update(100);
-		this->hotBath->update();
-		this->coldBath->update();
+		this->stateLogic->update(deltaT);
+		this->hotBath->update(deltaT);
+		this->coldBath->update(deltaT);
 		// this->translator->update(this->stateLogic->getCurrentState());
 	}
 

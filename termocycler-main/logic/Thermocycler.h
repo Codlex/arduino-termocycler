@@ -47,7 +47,7 @@ public:
 
 	void back();
 
-	void update();
+	void update(int deltaT);
 };
 
 #endif
