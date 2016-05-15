@@ -14,8 +14,9 @@ public:
 			Bath(Settings::HotBathTemperatureSensor1,
 					Settings::HotBathTemperatureSensor2,
 					Settings::HotBathLevelEchoPin,
-					Settings::HotBathLevelTriggerPin) {
-		this->heater = new Heater();
+					Settings::HotBathLevelTriggerPin,
+					Settings::HotBathWaterPump) {
+		this->heater = new Heater(Settings::HotBathHeaterPin);
 	}
 
 	virtual void keepTemperature() {

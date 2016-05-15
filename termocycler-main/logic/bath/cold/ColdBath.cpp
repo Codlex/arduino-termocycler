@@ -14,8 +14,9 @@ public:
 			Bath(Settings::ColdBathTemperatureSensor1,
 					Settings::ColdBathTemperatureSensor2,
 					Settings::ColdBathLevelEchoPin,
-					Settings::ColdBathLevelTriggerPin) {
-		this->cooler = new Cooler();
+					Settings::ColdBathLevelTriggerPin,
+					Settings::ColdBathWaterPump) {
+		this->cooler = new Cooler(Settings::ColdBathCoolerPin);
 	}
 
 	virtual void keepTemperature() {

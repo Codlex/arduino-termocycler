@@ -15,6 +15,10 @@ public:
 		Log.debug("Cooler is turned off.");
 	}
 
+	Cooler(int pin) : Switch(pin) {
+
+	}
+
 };
 
 #endif

@@ -46,13 +46,13 @@ public:
 	int temperature = 0;
 	int time = 0;
 
-	Bath(int temperatureSensorIndex1, int temperatureSensorIndex2, int levelEchoPin, int levelTriggerPin) {
+	Bath(int temperatureSensorIndex1, int temperatureSensorIndex2, int levelEchoPin, int levelTriggerPin, int waterPumpPin) {
 		this->temperatureSensor1 = new TemperatureSensor(
 				temperatureSensorIndex1);
 		this->temperatureSensor2 = new TemperatureSensor(
 				temperatureSensorIndex2);
 		this->level = new LevelSensor(levelEchoPin, levelTriggerPin, Settings::BathDepth);
-		this->pump = new WaterPump();
+		this->pump = new WaterPump(waterPumpPin);
 	}
 
 	void update(int deltaT) {

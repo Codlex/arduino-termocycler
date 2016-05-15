@@ -13,6 +13,10 @@ public:
 	void off() {
 		Log.debug("Pump is turned off.");
 	}
+
+	WaterPump(int pin) : Switch(pin) {
+
+	}
 };
 
 #endif
