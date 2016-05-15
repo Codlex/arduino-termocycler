@@ -122,4 +122,7 @@ void Thermocycler::logStatus() {
 
 void Thermocycler::reset() {
 	this->selectedInput = COLD_TEMPERATURE;
+	this->isDirty = true;
+
+	// TODO: reset everything for next cycling
 }
