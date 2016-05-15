@@ -24,6 +24,10 @@ private:
 	static const int START = 6;
 	static const int STARTED = 7;
 
+	void logStatus();
+
+	void reset();
+
 public:
 	Thermocycler();
 	Bath* coldBath;

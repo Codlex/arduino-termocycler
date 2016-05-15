@@ -11,7 +11,7 @@ StateLogic::StateLogic(Thermocycler* thermocycler) {
 
 
 void StateLogic::changeState(State state) {
-	Log.debug("State change %d -> %d", this->currentState, state);
+	Log.debug("STATE_CHANGE [%s] -> [%s]", StateToString(this->currentState), StateToString(state));
 
 	this->currentState = state;
 	switch (state) {
@@ -22,6 +22,8 @@ void StateLogic::changeState(State state) {
 		this->coldBathImmersionCount++;
 		break;
 	// do nothing for the rest
+	default:
+		Log.error("EXPECTED HOT OR COLD BATH ONLY");
 	}
 }
 
@@ -40,7 +42,7 @@ void StateLogic::processNotReady() {
 }
 
 
-long StateLogic::getTargetImmersionTime() {
+int StateLogic::getTargetImmersionTime() {
 	// ASSERT state in (ColdBath, HotBath)
 	if (this->currentState == State::ColdBath) {
 		return toMillis(this->thermocycler->coldBath->time);
@@ -59,15 +61,14 @@ void StateLogic::doCycle() {
 
 bool StateLogic::isLastCycle() {
 	int targetCycles = this->thermocycler->cycles;
-	bool hotFinished = this->hotBathImmersionCount == targetCycles;
-	bool coldFinished = this->coldBathImmersionCount == targetCycles;
+	bool hotFinished = this->hotBathImmersionCount >= targetCycles;
+	bool coldFinished = this->coldBathImmersionCount >= targetCycles;
 	return hotFinished && coldFinished;
 }
 
 void StateLogic::processCycling() {
 	// ASSERT state in (ColdBath, HotBath)
-	long currentImmersionTime = this->time - this->immersionStart;
-
+	long currentImmersionTime = calculateImmersionTime();
 	if (currentImmersionTime > getTargetImmersionTime()) {
 		if (!isLastCycle()) {
 			// reset start time
@@ -78,10 +79,12 @@ void StateLogic::processCycling() {
 		} else {
 			changeState(State::Finished);
 		}
-
 	}
 }
 
+int StateLogic::calculateImmersionTime() {
+	return this->time - this->immersionStart;
+}
 
 State StateLogic::getCurrentState() {
 	return this->currentState;
@@ -92,15 +95,12 @@ void StateLogic::update(long delta) {
 
 	switch (this->currentState) {
 	case State::NotReady:
-		Log.debug("STATE_CHANGE:Warming up state.");
 		processNotReady();
 		break;
 	case State::HotBath:
-		Log.debug("STATE_CHANGE:HotBath -> ColdBath");
 		processCycling();
 		break;
 	case State::ColdBath:
-		Log.debug("STATE_CHANGE:ColdBath -> HotBath");
 		processCycling();
 		break;
 

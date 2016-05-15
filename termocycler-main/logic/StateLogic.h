@@ -11,6 +11,22 @@ enum class State {
 	NotReady, HotBath, ColdBath, Finished
 };
 
+
+static char* StateToString(State state) {
+	switch (state) {
+	case State::NotReady:
+		return "NotReady";
+	case State::HotBath:
+		return "HotBath";
+	case State::ColdBath:
+		return "ColdBath";
+	case State::Finished:
+		return "Finished";
+	default:
+		return "StateNameNotFound!";
+	}
+}
+
 class StateLogic {
 
 private:
@@ -18,8 +34,6 @@ private:
 	State currentState = State::NotReady;
 	long time = 0;
 	long immersionStart = 0;
-	long hotBathImmersionCount = 0;
-	long coldBathImmersionCount = 0;
 
 	void changeState(State state);
 
@@ -28,7 +42,6 @@ private:
 	void processNotReady();
 
 
-	long getTargetImmersionTime();
 
 	void doCycle();
 
@@ -37,12 +50,20 @@ private:
 	void processCycling();
 
 
+
 public:
+	long hotBathImmersionCount = 0;
+	long coldBathImmersionCount = 0;
+
 	StateLogic(Thermocycler* thermocycler);
 
 	State getCurrentState();
 
 	void update(long delta);
+
+	int calculateImmersionTime();
+
+	int getTargetImmersionTime();
 
 };
 

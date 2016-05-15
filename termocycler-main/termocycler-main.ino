@@ -16,7 +16,6 @@ void setup() {
   Log.debug("Thermocycler started");
 
   TemperatureSensor::refreshSensors();
-  
 }
 
 

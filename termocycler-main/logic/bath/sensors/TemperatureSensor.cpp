@@ -17,7 +17,7 @@ class TemperatureSensor {
 private:
 	int sensorIndex;
 
-	static const int MAX_DATA_AGE = 2000;
+	static const int MAX_DATA_AGE = 5000;
 
 
 
@@ -37,8 +37,6 @@ public:
 			int then = millis();
 			refreshSensors();
 			int processingTime = millis() - then;
-			Log.debug("Refreshed temperatures in %d milliseconds.", processingTime);
-
 		}
 	}
 
