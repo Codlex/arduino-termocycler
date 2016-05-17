@@ -10,20 +10,17 @@
 class Bath {
 private:
     void keepLevel() {
-      if (this->level->getPercentageFilled() < Settings::BathMinimumLevel) {
+      int precetage = this->level->getPercentageFilled();
+      if (precetage < Settings::BathMinimumLevel) {
+    	//Log.debug("ukljuceno punjenje! %d", precetage);
         this->pump->turnOn();
       } else {
+    	// Log.debug("iskljuceno punjenje!, %d", precetage);
         this->pump->turnOff();
       }
     }
 
-	bool isTemperatureOK() {
-		float minTemperature = this->temperature - Settings::TemperatureEpsilon;
-		float maxTemperature = this->temperature + Settings::TemperatureEpsilon;
-		float currentTemperature = getCurrentTemperature();
-		return minTemperature <= currentTemperature
-				&& currentTemperature <= maxTemperature;
-	}
+
 
 	bool isLevelOK() {
 		int minimumLevel = Settings::BathMinimumLevel - Settings::LevelEpsilon;
@@ -40,6 +37,14 @@ protected:
 		float sum = this->temperatureSensor1->getTemperature();
 		sum += this->temperatureSensor2->getTemperature();
 		return sum / 2;
+	}
+
+	bool isTemperatureOK() {
+		float minTemperature = this->temperature - Settings::TemperatureEpsilon;
+		float maxTemperature = this->temperature + Settings::TemperatureEpsilon;
+		float currentTemperature = getCurrentTemperature();
+		return minTemperature <= currentTemperature
+				&& currentTemperature <= maxTemperature;
 	}
 
 public:

@@ -109,6 +109,9 @@ void Thermocycler::update(int deltaT) {
 			Log.debug("############################## CYCLING_FINISHED ##############################");
 			reset();
 		}
+	} else {
+		this->hotBath->logStatus();
+		this->coldBath->logStatus();
 	}
 
 }

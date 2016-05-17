@@ -20,8 +20,8 @@ private:
 	int pin;
 
 protected:
-	virtual void on() = 0;
-	virtual void off() = 0;
+	virtual void on() {};
+	virtual void off() {};
 
 public:
 	Switch(int pin) {

@@ -20,7 +20,7 @@ public:
 	}
 
 	virtual void keepTemperature() {
-		if (getCurrentTemperature() < this->temperature) {
+		if (!isTemperatureOK()) {
 			this->heater->turnOn();
 		} else {
 			this->heater->turnOff();

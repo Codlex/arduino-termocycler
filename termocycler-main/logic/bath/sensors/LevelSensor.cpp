@@ -16,11 +16,11 @@ public:
 		this->triggerPin = triggerPin;
 		this->echoPin = echoPin;
 		this->emptyDistance = emptyDistance;
-		this->sonar = new NewPing(triggerPin, echoPin);
+		this->sonar = new NewPing(triggerPin, echoPin, 50);
 	}
 
 	int getPercentageFilled() {
-		float filledCM = this->emptyDistance - this->sonar->ping_cm();
+		float filledCM = this->emptyDistance - this->sonar->convert_cm(this->sonar->ping_median(10));
 		return (int) ((filledCM / this->emptyDistance) * 100);
 	}
 };

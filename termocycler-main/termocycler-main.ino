@@ -14,6 +14,8 @@ void setup() {
   View.init();
   Input.init();
   Log.debug("Thermocycler started");
+  
+  TemperatureSensor::init();
 
   TemperatureSensor::refreshSensors();
 }
@@ -30,6 +32,13 @@ void loop() {
   }
   
   updatee(deltaT);
+
+//  Log.debug("%d is 0", (int) sensors.getTempCByIndex(0));
+//  
+//  Log.debug("%d is 1", (int) sensors.getTempCByIndex(1));
+//  Log.debug("%d is 2", (int) sensors.getTempCByIndex(2));
+//  Log.debug("%d is 3", (int) sensors.getTempCByIndex(3));
+//  Log.debug("%d is safety", (int) sensors.getTempCByIndex(4));
 }
 
 void updatee(int deltaT) {
@@ -37,6 +46,5 @@ void updatee(int deltaT) {
   View.update();
   Thermocycler.update(deltaT);
   TemperatureSensor::update(deltaT);
-
 }
 

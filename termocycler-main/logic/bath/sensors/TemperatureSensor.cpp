@@ -42,6 +42,7 @@ public:
 	static void init() {
 		// async
 		sensors.setWaitForConversion(false);
+
 	}
 
 	static void refreshSensors() {

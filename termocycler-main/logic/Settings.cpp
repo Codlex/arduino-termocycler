@@ -8,7 +8,7 @@ public:
 	/**
 	 * Bath.
 	 */
-	const static int BathMinimumLevel = 90;
+	const static int BathMinimumLevel = 80;
 	const static int BathDepth = 23;
 	const static int LevelEpsilon = 1;
 	const static int TemperatureEpsilon = 1;
