@@ -6,25 +6,25 @@
 class Time {
 
 private:
-	const static int millisecondsInSecond = 1000;
-	const static int secondsInMinute = 60;
-	const static int minutesInHour = 60;
-	const static int hoursInDay = 24;
+	const static unsigned long millisecondsInSecond = 1000UL;
+	const static unsigned long secondsInMinute = 60UL;
+	const static unsigned long minutesInHour = 60UL;
+	const static unsigned long hoursInDay = 24UL;
 
 public:
 	int days() {
-		int divider = millisecondsInSecond * secondsInMinute * minutesInHour
+		unsigned long divider = millisecondsInSecond * secondsInMinute * minutesInHour
 				* hoursInDay;
 		return millis() / divider;
 	}
 
 	int hours() {
-		int divider = millisecondsInSecond * secondsInMinute * minutesInHour;
+		unsigned long divider = millisecondsInSecond * secondsInMinute * minutesInHour;
 		return (millis() / divider) % hoursInDay;
 	}
 
 	int minutes() {
-		int divider = millisecondsInSecond * secondsInMinute;
+		unsigned long divider = millisecondsInSecond * secondsInMinute;
 		return (millis() / divider) % minutesInHour;
 	}
 
