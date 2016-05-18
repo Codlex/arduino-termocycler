@@ -1,4 +1,3 @@
-#include "StateLogic.h"
 #include "Thermocycler.h"
 #include <stdlib.h>
 #include <stdio.h>

@@ -7,9 +7,10 @@
 class Thermocycler;
 
 
-enum class State {
-	NotReady, HotBath, ColdBath, Finished
+enum State {
+		NotReady, HotBath, ColdBath, Finished
 };
+
 
 
 static char* StateToString(State state) {
@@ -52,6 +53,7 @@ private:
 
 
 public:
+
 	long hotBathImmersionCount = 0;
 	long coldBathImmersionCount = 0;
 

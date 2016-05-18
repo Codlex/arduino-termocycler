@@ -42,6 +42,13 @@ public:
 	const static int ColdBathTemperatureSensor1 = 2;
 	const static int ColdBathTemperatureSensor2 = 3;
 
+
+	/**
+	 * Translator
+	 */
+	const static int TranslatorToCold = A5;
+	const static int TranslatorPulsePin = A6;
+
 };
 
 
