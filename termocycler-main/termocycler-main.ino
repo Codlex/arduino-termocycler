@@ -8,27 +8,29 @@ Thermocycler Thermocycler;
 ThermocyclerView View(&Thermocycler);
 Input Input(&Thermocycler);
 
+unsigned long lastLoopEnd = millis();
 
 void setup() {
   Log.init();
   View.init();
   Input.init();
   Log.debug("Thermocycler started");
-  
+  Thermocycler.init();
   TemperatureSensor::init();
 
   TemperatureSensor::refreshSensors();
+
+  lastLoopEnd = millis();
 }
 
 
-int lastLoopEnd = millis();
 void loop() {
-  int currentMillis = millis();
-  int deltaT = currentMillis - lastLoopEnd;
+  unsigned long currentMillis = millis();
+  unsigned long deltaT = currentMillis - lastLoopEnd;
   lastLoopEnd = currentMillis;
   
   if (deltaT > 100) {
-    Log.error("Processing took: %d millis.", deltaT);
+    Log.error("Processing took: %lu millis.", deltaT);
   }
   
   updatee(deltaT);
@@ -41,7 +43,7 @@ void loop() {
 //  Log.debug("%d is safety", (int) sensors.getTempCByIndex(4));
 }
 
-void updatee(int deltaT) {
+void updatee(unsigned long deltaT) {
 	Input.update();
   View.update();
   Thermocycler.update(deltaT);

@@ -17,10 +17,14 @@ public:
 					Settings::HotBathLevelTriggerPin,
 					Settings::HotBathWaterPump) {
 		this->heater = new Heater(Settings::HotBathHeaterPin);
+
+		this->temperature = 3;
+		this->time = 10;
 	}
 
 	virtual void keepTemperature() {
-		if (!isTemperatureOK()) {
+		// TOOD: check this
+		if (getCurrentTemperature() < this->temperature) {
 			this->heater->turnOn();
 		} else {
 			this->heater->turnOff();

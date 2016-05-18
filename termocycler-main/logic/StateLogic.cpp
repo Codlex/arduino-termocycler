@@ -26,14 +26,15 @@ void StateLogic::changeState(State state) {
 	}
 }
 
-long StateLogic::toMillis(int seconds) {
-	return seconds * 1000;
+unsigned long StateLogic::toMillis(unsigned long seconds) {
+	return seconds * 1000UL;
 }
 
 void StateLogic::processNotReady() {
 	bool hotBathReady = this->thermocycler->hotBath->isReady();
 	bool coldBathReady = this->thermocycler->coldBath->isReady();
 	if (hotBathReady && coldBathReady) {
+		this->immersionStart = this->time;
 		changeState(State::HotBath);
 	} else {
 		Log.debug("Thermocycler is not ready yet.");
@@ -41,7 +42,7 @@ void StateLogic::processNotReady() {
 }
 
 
-int StateLogic::getTargetImmersionTime() {
+unsigned long StateLogic::getTargetImmersionTime() {
 	// ASSERT state in (ColdBath, HotBath)
 	if (this->currentState == State::ColdBath) {
 		return toMillis(this->thermocycler->coldBath->time);
@@ -56,6 +57,9 @@ void StateLogic::doCycle() {
 	} else {
 		changeState(State::ColdBath);
 	}
+
+	// reset start time
+	this->immersionStart = this->time;
 }
 
 bool StateLogic::isLastCycle() {
@@ -67,7 +71,7 @@ bool StateLogic::isLastCycle() {
 
 void StateLogic::processCycling() {
 	// ASSERT state in (ColdBath, HotBath)
-	long currentImmersionTime = calculateImmersionTime();
+	unsigned long currentImmersionTime = calculateImmersionTime();
 	if (currentImmersionTime > getTargetImmersionTime()) {
 		if (!isLastCycle()) {
 			// reset start time
@@ -81,7 +85,7 @@ void StateLogic::processCycling() {
 	}
 }
 
-int StateLogic::calculateImmersionTime() {
+unsigned long StateLogic::calculateImmersionTime() {
 	return this->time - this->immersionStart;
 }
 
@@ -89,7 +93,7 @@ State StateLogic::getCurrentState() {
 	return this->currentState;
 }
 
-void StateLogic::update(long delta) {
+void StateLogic::update(unsigned long delta) {
 	this->time += delta;
 
 	switch (this->currentState) {

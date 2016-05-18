@@ -13,7 +13,7 @@ class Logger {
 private:
 	void log(char* tag, char* message) {
 		char buffer[256];
-		sprintf(buffer, "%02d %02d:%02d:%02d,%03d [%s] %.128s\n", Time.days(),
+		sprintf(buffer, "%02lu %02lu:%02lu:%02lu,%03lu [%s] %.128s\n", Time.days(),
 				Time.hours(), Time.minutes(), Time.seconds(),
 				Time.milliseconds(), tag, message);
 		Serial.print(buffer);

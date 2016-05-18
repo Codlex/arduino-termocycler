@@ -33,16 +33,14 @@ class StateLogic {
 private:
 	Thermocycler* thermocycler;
 	State currentState = State::NotReady;
-	long time = 0;
-	long immersionStart = 0;
+	unsigned long time = 0;
+	unsigned long immersionStart = 0;
 
 	void changeState(State state);
 
-	long toMillis(int seconds);
+	unsigned long toMillis(unsigned long seconds);
 
 	void processNotReady();
-
-
 
 	void doCycle();
 
@@ -53,7 +51,6 @@ private:
 
 
 public:
-
 	long hotBathImmersionCount = 0;
 	long coldBathImmersionCount = 0;
 
@@ -61,11 +58,11 @@ public:
 
 	State getCurrentState();
 
-	void update(long delta);
+	void update(unsigned long delta);
 
-	int calculateImmersionTime();
+	unsigned long calculateImmersionTime();
 
-	int getTargetImmersionTime();
+	unsigned long getTargetImmersionTime();
 
 };
 

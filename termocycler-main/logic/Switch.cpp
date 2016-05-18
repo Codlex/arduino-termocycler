@@ -18,22 +18,33 @@ private:
 
 	SwitchState state = Off;
 	int pin;
+	int onCurrent;
+	int offCurrent;
 
 protected:
 	virtual void on() {};
 	virtual void off() {};
 
 public:
-	Switch(int pin) {
+	Switch(int pin, bool inverse = false) {
+
+		if (inverse) {
+			this->onCurrent = OFF_CURRENT;
+			this->offCurrent = ON_CURRENT;
+		} else {
+			this->onCurrent = ON_CURRENT;
+			this->offCurrent = OFF_CURRENT;
+		}
+
 		this->pin = pin;
 		pinMode(this->pin, OUTPUT);
-		digitalWrite(this->pin, OFF_CURRENT);
+		digitalWrite(this->pin, this->offCurrent);
 	}
 
 	void turnOn() {
 		if (this->state != On) {
 			this->state = On;
-			digitalWrite(this->pin, ON_CURRENT);
+			digitalWrite(this->pin, this->onCurrent);
 			on();
 		}
 	}
@@ -41,7 +52,7 @@ public:
 	void turnOff() {
 		if (this->state != Off) {
 			this->state = Off;
-			digitalWrite(this->pin, OFF_CURRENT);
+			digitalWrite(this->pin, this->offCurrent);
 			off();
 		}
 	}

@@ -18,7 +18,7 @@ class TemperatureSensor {
 
 private:
 	int sensorIndex;
-	static const int MAX_DATA_AGE = 1000;
+	static const unsigned long MAX_DATA_AGE = 1000;
 
 public:
 
@@ -30,12 +30,12 @@ public:
 		return sensors.getTempCByIndex(sensorIndex);
 	}
 
-	static void update(int deltaT) {
+	static void update(unsigned long deltaT) {
 		dataAge += deltaT;
 		if (dataAge >= MAX_DATA_AGE) {
-			int then = millis();
+			unsigned long then = millis();
 			refreshSensors();
-			int processingTime = millis() - then;
+			unsigned long processingTime = millis() - then;
 		}
 	}
 

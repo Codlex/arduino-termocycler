@@ -40,6 +40,7 @@ protected:
 	}
 
 	bool isTemperatureOK() {
+		return true;
 		float minTemperature = this->temperature - Settings::TemperatureEpsilon;
 		float maxTemperature = this->temperature + Settings::TemperatureEpsilon;
 		float currentTemperature = getCurrentTemperature();
@@ -49,7 +50,7 @@ protected:
 
 public:
 	int temperature = 0;
-	int time = 0;
+	unsigned long time = 0;
 
 	Bath(int temperatureSensorIndex1, int temperatureSensorIndex2, int levelEchoPin, int levelTriggerPin, int waterPumpPin) {
 		this->temperatureSensor1 = new TemperatureSensor(
@@ -60,7 +61,7 @@ public:
 		this->pump = new WaterPump(waterPumpPin);
 	}
 
-	void update(int deltaT) {
+	void update(unsigned long deltaT) {
 		keepTemperature();
 		keepLevel();
 		logStatus();

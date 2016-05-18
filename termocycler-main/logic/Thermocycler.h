@@ -37,7 +37,7 @@ public:
 	bool isDirty = false;
 	bool isStarted = false;
 
-	int* getSelected();
+	void* getSelected();
 
 	void enterDigit(int digit);
 
@@ -47,11 +47,13 @@ public:
 
 	void confirm();
 
-	bool isSelected(int* field);
+	bool isSelected(void* field);
 
 	void back();
 
-	void update(int deltaT);
+	void update(unsigned long deltaT);
+
+	void init();
 };
 
 #endif

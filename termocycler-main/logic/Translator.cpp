@@ -9,25 +9,13 @@
 class Translator {
 
 private:
+	Switch* power = new Switch(Settings::TranslatorPowerPin, true);
 	Switch* toCold = new Switch(Settings::TranslatorToColdDirection);
 	Switch* pulse = new Switch(Settings::TranslatorPulsePin);
+
 	State currentState = State::NotReady;
 
-	void goToCold() {
-		toCold->turnOn();
-		delay(50);
-		pulse->turnOn();
-		delay(100);
-		pulse->turnOff();
-	}
 
-	void goToHot() {
-		toCold->turnOff();
-		delay(50);
-		pulse->turnOn();
-		delay(100);
-		pulse->turnOff();
-	}
 
 	void changeState(State state) {
 		this->currentState = state;
@@ -44,7 +32,7 @@ private:
 public:
 
 	Translator() {
-
+		this->power->turnOn();
 	}
 
 
@@ -57,6 +45,32 @@ public:
 		if (state != currentState) {
 			changeState(state);
 		}
+	}
+
+	void erect() {
+		// assume that state is HotBath
+		this->power->turnOn();
+		this->toCold->turnOn();
+		this->pulse->turnOn();
+		delay(750);
+		this->pulse->turnOff();
+		this->power->turnOff();
+	}
+
+	void goToCold() {
+		this->power->turnOn();
+		this->toCold->turnOn();
+		this->pulse->turnOn();
+		delay(500);
+		this->pulse->turnOff();
+	}
+
+	void goToHot() {
+		this->power->turnOn();
+		this->toCold->turnOff();
+		this->pulse->turnOn();
+		delay(500);
+		this->pulse->turnOff();
 	}
 };
 
