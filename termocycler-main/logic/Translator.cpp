@@ -9,7 +9,7 @@
 class Translator {
 
 private:
-	Switch* toCold = new Switch(Settings::TranslatorToCold);
+	Switch* toCold = new Switch(Settings::TranslatorToColdDirection);
 	Switch* pulse = new Switch(Settings::TranslatorPulsePin);
 	State currentState = State::NotReady;
 

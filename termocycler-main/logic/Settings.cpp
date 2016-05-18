@@ -19,9 +19,9 @@ public:
 	 */
 	const static int HotBathLevelEchoPin = A15;
 	const static int HotBathLevelTriggerPin = A14;
-	const static int HotBathHeaterPin = A4;
-	const static int HotBathWaterPump = A3;
-	const static int HotBathCirculationWaterPump = A2;
+	const static int HotBathHeaterPin = A7;
+	const static int HotBathWaterPump = A5;
+	const static int HotBathCirculationWaterPump = A4;
 
 	// indices for one wire
 	const static int HotBathTemperatureSensor1 = 0;
@@ -36,7 +36,7 @@ public:
 	const static int ColdBathLevelEchoPin = A13;
 	const static int ColdBathLevelTriggerPin = A12;
 	const static int ColdBathCoolerPin = A0;
-	const static int ColdBathWaterPump = A1;
+	const static int ColdBathWaterPump = A2;
 
 	// indices for one wire
 	const static int ColdBathTemperatureSensor1 = 2;
@@ -46,8 +46,9 @@ public:
 	/**
 	 * Translator
 	 */
-	const static int TranslatorToCold = A5;
-	const static int TranslatorPulsePin = A6;
+	const static int TranslatorPowerPin = A6;
+	const static int TranslatorPulsePin = A1;
+	const static int TranslatorToColdDirection = A3;
 
 };
 
