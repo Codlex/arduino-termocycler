@@ -1,49 +1,29 @@
-#ifndef LOGGER_H
-#define LOGGER_H
-
 #include <stdio.h>
 #include <Arduino.h>
 #include "Time.cpp"
 #include <stdarg.h>
+#include "../logic/Settings.cpp"
+#include "FileLogger.h"
+#include "Logger.h"
 
-class Logger;
-extern Logger Log;
+Logger::Logger() {
+	Serial.begin(9600);
+	this->fileLogger = new FileLogger(Settings::SDSelectChip, Settings::LogFile);
+}
 
-class Logger {
-private:
-	void log(char* tag, char* message) {
-		char buffer[256];
-		sprintf(buffer, "%02lu %02lu:%02lu:%02lu,%03lu [%s] %.128s\n", Time.days(),
-				Time.hours(), Time.minutes(), Time.seconds(),
-				Time.milliseconds(), tag, message);
-		Serial.print(buffer);
-		Serial.flush();
-	}
+void Logger::log(char* tag, char* message) {
+	char buffer[256];
+	sprintf(buffer, "%02lu %02lu:%02lu:%02lu,%03lu [%s] %.128s\n",
+			Time.days(), Time.hours(), Time.minutes(), Time.seconds(),
+			Time.milliseconds(), tag, message);
 
-public:
-	void init() {
-		Serial.begin(9600);
-	}
+	this->fileLogger->log(buffer);
+	Serial.print(buffer);
+	Serial.flush();
+}
 
-	static void debug(char* messageFormat...) {
-		char buffer[256];
-		va_list args;
-		va_start(args, messageFormat);
-		vsprintf(buffer, messageFormat, args);
-		Log.log("DEBUG", buffer);
-		va_end (args);
-	}
 
-	static void error(char* messageFormat...) {
-		char buffer[256];
-		va_list args;
-		va_start(args, messageFormat);
-		vsprintf(buffer, messageFormat, args);
-		Log.log("ERROR", buffer);
-		va_end (args);
-	}
+void Logger::init() {
+}
 
-};
-
-#endif
 

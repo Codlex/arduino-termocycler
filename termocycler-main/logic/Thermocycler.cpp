@@ -29,7 +29,7 @@ void* Thermocycler::getSelected() {
 	case START:
 		return &start;
 	default:
-		Log.error("No item selected getSelected executed!");
+		error("No item selected getSelected executed!");
 	}
 }
 
@@ -55,14 +55,14 @@ void Thermocycler::enterDigit(int digit) {
 			start = start * 10 + digit;
 			break;
 		default:
-			Log.error("No item selected getSelected executed!");
+			error("No item selected getSelected executed!");
 		}
 
 		this->isDirty = true;
-		Log.debug("Digit entered!");
+		debug("Digit entered!");
 
 	} else {
-		Log.error("Tried to input but no element selected");
+		error("Tried to input but no element selected");
 	}
 }
 
@@ -88,32 +88,32 @@ void Thermocycler::deleteDigit() {
 			start /= 10;
 			break;
 		default:
-			Log.error("No item selected getSelected executed!");
+			error("No item selected getSelected executed!");
 		}
 		this->isDirty = true;
 	} else {
-		Log.error("Tried to input but no element selected");
+		error("Tried to input but no element selected");
 	}
 }
 
 void Thermocycler::exit() {
-	Log.debug("exit");
+	debug("exit");
 }
 
 void Thermocycler::confirm() {
 	if (this->isStarted) {
-		Log.error("Thermocycler started, can't go confirm now.");
+		error("Thermocycler started, can't go confirm now.");
 		return;
 	}
 
-	Log.debug("confirmed");
+	debug("confirmed");
 	this->selectedInput++;
 	this->isDirty = true;
 
 	if (this->selectedInput == STARTED) {
 		// validate first
 		this->isStarted = true;
-		Log.debug("############################## CYCLING_STARTED ##############################");
+		debug("############################## CYCLING_STARTED ##############################");
 
 	}
 }
@@ -124,16 +124,16 @@ bool Thermocycler::isSelected(void* field) {
 
 void Thermocycler::back() {
 	if (this->isStarted) {
-		Log.error("Thermocycler started, can't go back now.");
+		error("Thermocycler started, can't go back now.");
 		return;
 	}
 
 	if (this->selectedInput == 1) {
-		Log.error("Can't go back no more!");
+		error("Can't go back no more!");
 		return;
 	}
 
-	Log.debug("back");
+	debug("back");
 	this->selectedInput--;
 	this->isDirty = true;
 
@@ -141,7 +141,7 @@ void Thermocycler::back() {
 
 void Thermocycler::update(unsigned long deltaT) {
 	if (this->isStarted) {
-		Log.debug("############################## CYCLE(hot=%ld, cold=%ld, total=%d) ##############################",
+		debug("############################## CYCLE(hot=%ld, cold=%ld, total=%d) ##############################",
 		this->stateLogic->hotBathImmersionCount, this->stateLogic->coldBathImmersionCount, this->cycles);
 		this->stateLogic->update(deltaT);
 		this->hotBath->update(deltaT);
@@ -151,18 +151,18 @@ void Thermocycler::update(unsigned long deltaT) {
 
 		if (this->stateLogic->getCurrentState() == State::Finished) {
 			this->isStarted = false;
-			Log.debug("############################## CYCLING_FINISHED ##############################");
+			debug("############################## CYCLING_FINISHED ##############################");
 			reset();
 		}
 	} else {
-		this->hotBath->logStatus();
-		this->coldBath->logStatus();
+		// this->hotBath->logStatus();
+		// this->coldBath->logStatus();
 	}
 
 }
 
 void Thermocycler::logStatus() {
-	Log.debug("ThermocyclerStatus(state=%s, immersion=%lu ms, targetImmersion=%lu ms)",
+	debug("ThermocyclerStatus(state=%s, immersion=%lu ms, targetImmersion=%lu ms)",
 			StateToString(this->stateLogic->getCurrentState()),
 			this->stateLogic->calculateImmersionTime(),
 			this->stateLogic->getTargetImmersionTime());

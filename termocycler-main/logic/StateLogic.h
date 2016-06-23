@@ -1,7 +1,7 @@
 #ifndef STATE_LOGIC_CPP
 #define STATE_LOGIC_CPP
 
-#include "../logger/Logger.cpp"
+#include "../logger/Logger.h"
 #include "Thermocycler.h"
 
 class Thermocycler;

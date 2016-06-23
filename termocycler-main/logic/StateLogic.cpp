@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-#include "../logger/Logger.cpp"
+#include "../logger/Logger.h"
 
 StateLogic::StateLogic(Thermocycler* thermocycler) {
 	this->thermocycler = thermocycler;
@@ -10,7 +10,7 @@ StateLogic::StateLogic(Thermocycler* thermocycler) {
 
 
 void StateLogic::changeState(State state) {
-	Log.debug("STATE_CHANGE [%s] -> [%s]", StateToString(this->currentState), StateToString(state));
+	debug("STATE_CHANGE [%s] -> [%s]", StateToString(this->currentState), StateToString(state));
 
 	this->currentState = state;
 	switch (state) {
@@ -22,7 +22,7 @@ void StateLogic::changeState(State state) {
 		break;
 	// do nothing for the rest
 	default:
-		Log.error("EXPECTED HOT OR COLD BATH ONLY");
+		error("EXPECTED HOT OR COLD BATH ONLY");
 	}
 }
 
@@ -37,7 +37,7 @@ void StateLogic::processNotReady() {
 		this->immersionStart = this->time;
 		changeState(State::HotBath);
 	} else {
-		Log.debug("Thermocycler is not ready yet.");
+		debug("Thermocycler is not ready yet.");
 	}
 }
 

@@ -2,17 +2,17 @@
 #define HEATER_H
 
 #include "Arduino.h"
-#include "../../../logger/Logger.cpp"
+#include "../../../logger/Logger.h"
 #include "../../Switch.cpp"
 
 class Heater: public Switch {
 protected:
 	void on() {
-		Log.debug("Heater is turned on!");
+		debug("Heater is turned on!");
 	}
 
 	void off() {
-		Log.debug("Heater is turned off!");
+		debug("Heater is turned off!");
 
 	}
 

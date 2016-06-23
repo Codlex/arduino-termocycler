@@ -1,7 +1,7 @@
 #ifndef THERMOCYCLER_CPP
 #define THERMOCYCLER_CPP
 
-#include "../logger/Logger.cpp"
+#include "../logger/Logger.h"
 #include "bath/BathFactory.cpp"
 #include "StateLogic.h"
 #include "Translator.cpp"

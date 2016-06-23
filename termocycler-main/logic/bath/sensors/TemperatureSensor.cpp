@@ -5,7 +5,7 @@
 #include <OneWire.h>
 #include <DallasTemperature.h>
 #include "../../Settings.cpp"
-#include "../../../logger/Logger.cpp"
+#include "../../../logger/Logger.h"
 
 
 static OneWire ds(Settings::OneWireTemperatureSensor);

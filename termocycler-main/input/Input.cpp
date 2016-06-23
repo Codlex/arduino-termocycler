@@ -3,7 +3,7 @@
 
 #include <Keypad.h>
 
-#include "../logger/Logger.cpp"
+#include "../logger/Logger.h"
 #include "../logic/Thermocycler.h"
 
 class Input {
@@ -62,7 +62,7 @@ public:
 		} else if (isBack(key)) {
 			model->back();
 		} else {
-			Log.error("Wrong key pressed ");
+			error("Wrong key pressed ");
 		}
 	}
 

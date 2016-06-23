@@ -1,7 +1,7 @@
 #ifndef BATH_H
 #define BATH_H
 
-#include "../../logger/Logger.cpp"
+#include "../../logger/Logger.h"
 #include "../Settings.cpp"
 #include "sensors/TemperatureSensor.cpp"
 #include "sensors/LevelSensor.cpp"
@@ -12,10 +12,10 @@ private:
     void keepLevel() {
       int precetage = this->level->getPercentageFilled();
       if (precetage < Settings::BathMinimumLevel) {
-    	//Log.debug("ukljuceno punjenje! %d", precetage);
+    	//debug("ukljuceno punjenje! %d", precetage);
         this->pump->turnOn();
       } else {
-    	// Log.debug("iskljuceno punjenje!, %d", precetage);
+    	// debug("iskljuceno punjenje!, %d", precetage);
         this->pump->turnOff();
       }
     }
@@ -30,7 +30,7 @@ private:
 protected:
 	TemperatureSensor* temperatureSensor1;
 	TemperatureSensor* temperatureSensor2;
-	LevelSensor* level;
+
 	WaterPump* pump;
 
 	float getCurrentTemperature() {
@@ -51,6 +51,7 @@ protected:
 public:
 	int temperature = 0;
 	unsigned long time = 0;
+	LevelSensor* level;
 
 	Bath(int temperatureSensorIndex1, int temperatureSensorIndex2, int levelEchoPin, int levelTriggerPin, int waterPumpPin) {
 		this->temperatureSensor1 = new TemperatureSensor(

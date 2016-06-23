@@ -50,6 +50,14 @@ public:
 	const static int TranslatorPulsePin = A1;
 	const static int TranslatorToColdDirection = A3;
 
+	/**
+	 * Logger.
+	 */
+	const static int SDSelectChip = 53;
+	constexpr static char* LogFile = "debug.log";
+	const static bool LogToFile = true;
+	const static bool LogToSerial = true;
+
 };
 
 

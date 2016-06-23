@@ -4,7 +4,7 @@
 #include <Arduino.h>
 #include <UTFT.h>
 
-#include "../logger/Logger.cpp"
+#include "../logger/Logger.h"
 #include "../logic/Thermocycler.h"
 
 extern uint8_t SmallFont[];
