@@ -146,7 +146,7 @@ void Thermocycler::update(unsigned long deltaT) {
 		this->stateLogic->update(deltaT);
 		this->hotBath->update(deltaT);
 		this->coldBath->update(deltaT);
-		this->translator->update(this->stateLogic->getCurrentState());
+		// this->translator->update(this->stateLogic->getCurrentState());
 		logStatus();
 
 		if (this->stateLogic->getCurrentState() == State::Finished) {
@@ -182,5 +182,5 @@ void Thermocycler::init() {
 	delay(2000);
 	// this->translator->goToHot();
 	// delay(1500);
-	this->translator->erect();
+	// this->translator->erect();
 }

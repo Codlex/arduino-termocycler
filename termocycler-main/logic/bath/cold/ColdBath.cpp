@@ -19,11 +19,12 @@ public:
 					Settings::ColdBathWaterPump) {
 		this->cooler = new Cooler(Settings::ColdBathCoolerPin);
 
-		this->temperature = 30;
+		this->temperature = 23;
 		this->time = 9UL;
 	}
 
 	virtual void keepTemperature() {
+		debug("keep temperature");
 		if (getCurrentTemperature() > this->temperature) {
 			this->cooler->turnOn();
 		} else {

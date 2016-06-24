@@ -40,7 +40,7 @@ void loop() {
     error("Processing took: %lu millis.", deltaT);
   }
 
-  debug("testing shit");
+  debug("70 C shit");
   
   updatee(deltaT);
 }
@@ -49,6 +49,6 @@ void updatee(unsigned long deltaT) {
 	Input.update();
   View.update();
   Thermocycler.update(deltaT);
-  // TemperatureSensor::update(deltaT);
+  TemperatureSensor::update(deltaT);
 }
 

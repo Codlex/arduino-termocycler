@@ -9,6 +9,7 @@
 class HotBath: public Bath {
 private:
 	Heater* heater;
+	Switch* circulationWaterPump;
 
 public:
 	HotBath() :
@@ -19,8 +20,10 @@ public:
 					Settings::HotBathWaterPump) {
 		this->heater = new Heater(Settings::HotBathHeaterPin);
 
-		this->temperature = 3;
+		this->temperature = 70;
 		this->time = 10;
+		this->circulationWaterPump = new Switch(Settings::HotBathCirculationWaterPump);
+		this->circulationWaterPump->turnOn();
 	}
 
 	virtual void keepTemperature() {
