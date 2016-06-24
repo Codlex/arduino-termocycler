@@ -158,7 +158,6 @@ void Thermocycler::update(unsigned long deltaT) {
 		 this->hotBath->logStatus();
 		 this->coldBath->logStatus();
 	}
-
 }
 
 void Thermocycler::logStatus() {

@@ -54,7 +54,7 @@ public:
 	 * Logger.
 	 */
 	const static int SDSelectChip = 53;
-	constexpr static char* LogFile = "debug.log";
+	constexpr static char* LogFile = "debug2.log";
 	const static bool LogToFile = true;
 	const static bool LogToSerial = true;
 

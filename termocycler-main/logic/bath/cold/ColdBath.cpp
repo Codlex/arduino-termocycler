@@ -1,6 +1,7 @@
 #ifndef COLD_BATH_H
 #define COLD_BATH_H
 
+#include "../../../logger/Logger.h"
 #include "../../Settings.cpp"
 #include "../Bath.cpp"
 #include "Cooler.cpp"

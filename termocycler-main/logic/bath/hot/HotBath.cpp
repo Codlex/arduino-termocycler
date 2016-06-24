@@ -1,6 +1,7 @@
 #ifndef HOT_BATH_H
 #define HOT_BATH_H
 
+#include "../../../logger/Logger.h"
 #include "../../Settings.cpp"
 #include "../Bath.cpp"
 #include "Heater.cpp"
