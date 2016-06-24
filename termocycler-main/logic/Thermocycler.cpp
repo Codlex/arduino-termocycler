@@ -155,8 +155,8 @@ void Thermocycler::update(unsigned long deltaT) {
 			reset();
 		}
 	} else {
-		// this->hotBath->logStatus();
-		// this->coldBath->logStatus();
+		 this->hotBath->logStatus();
+		 this->coldBath->logStatus();
 	}
 
 }
@@ -166,6 +166,8 @@ void Thermocycler::logStatus() {
 			StateToString(this->stateLogic->getCurrentState()),
 			this->stateLogic->calculateImmersionTime(),
 			this->stateLogic->getTargetImmersionTime());
+	this->hotBath->logStatus();
+	this->coldBath->logStatus();
 }
 
 void Thermocycler::reset() {
