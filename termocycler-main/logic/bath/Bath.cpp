@@ -12,10 +12,10 @@ private:
     void keepLevel() {
       int precetage = this->level->getPercentageFilled();
       if (precetage < Settings::BathMinimumLevel) {
-    	//debug("ukljuceno punjenje! %d", precetage);
+    	debug("ukljuceno punjenje! %d", precetage);
         this->pump->turnOn();
       } else {
-    	// debug("iskljuceno punjenje!, %d", precetage);
+    	debug("iskljuceno punjenje!, %d", precetage);
         this->pump->turnOff();
       }
     }

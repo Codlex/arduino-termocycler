@@ -32,13 +32,13 @@ void loop() {
   unsigned long deltaT = currentMillis - lastLoopEnd;
   lastLoopEnd = currentMillis;
   
-  // if (deltaT > 100) {
+  if (deltaT > 100) {
     error("Processing took: %lu millis.", deltaT);
-  // }
+  }
   
   updatee(deltaT);
 
-//  debug("%d is 0", (int) sensors.getTempCByIndex(0));
+  // debug("%d is 0", (int) sensors.getTempCByIndex(0));
 //  
 //  debug("%d is 1", (int) sensors.getTempCByIndex(1));
 //  debug("%d is 2", (int) sensors.getTempCByIndex(2));
@@ -49,7 +49,7 @@ void loop() {
 void updatee(unsigned long deltaT) {
 	Input.update();
   View.update();
-  // Thermocycler.update(deltaT);
-  // TemperatureSensor::update(deltaT);
+  Thermocycler.update(deltaT);
+  TemperatureSensor::update(deltaT);
 }
 

@@ -48,7 +48,7 @@ public:
 	    cm = sonar->ping_result / US_ROUNDTRIP_CM;
 	    debug("succesfully read sensor data");
 	  } else {
-		 //  debug("not ready sonar");
+		 debug("not ready sonar");
 	  }
 	}
 
