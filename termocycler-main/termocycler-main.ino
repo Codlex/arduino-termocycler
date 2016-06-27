@@ -37,11 +37,9 @@ void loop() {
   lastLoopEnd = currentMillis;
   
   if (deltaT > 100) {
-    error("Processing took: %lu millis.", deltaT);
+    // error("Processing took: %lu millis.", deltaT);
   }
-
-  debug("70 C shit");
-  
+    
   updatee(deltaT);
 }
 

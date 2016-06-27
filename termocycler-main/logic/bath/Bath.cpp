@@ -40,7 +40,6 @@ protected:
 	}
 
 	bool isTemperatureOK() {
-		return true;
 		float minTemperature = this->temperature - Settings::TemperatureEpsilon;
 		float maxTemperature = this->temperature + Settings::TemperatureEpsilon;
 		float currentTemperature = getCurrentTemperature();
