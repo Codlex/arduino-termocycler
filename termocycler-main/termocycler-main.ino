@@ -1,3 +1,5 @@
+#include <Arduino.h>
+
 #include "logger/Logger.h"
 #include "logic/Thermocycler.h"
 #include "view/ThermocyclerView.cpp"

@@ -2,6 +2,7 @@
 #include "Thermocycler.h"
 
 #include "StateLogic.h"
+#include "../view/Screen.h"
 
 Thermocycler::Thermocycler() {
 	this->stateLogic = new StateLogic(this);
@@ -30,6 +31,7 @@ void* Thermocycler::getSelected() {
 		return &start;
 	default:
 		error("No item selected getSelected executed!");
+		return NULL;
 	}
 }
 
@@ -70,22 +72,22 @@ void Thermocycler::deleteDigit() {
 	if (selectedInput) {
 		switch (selectedInput) {
 		case COLD_TEMPERATURE:
-			coldBath->temperature /= 10;
+			this->coldBath->temperature /= 10;
 			break;
 		case COLD_TIME:
-			coldBath->time /= 10;
+			this->coldBath->time /= 10;
 			break;
 		case HOT_TEMPERATURE:
-			hotBath->temperature /= 10;
+			this->hotBath->temperature /= 10;
 			break;
 		case HOT_TIME:
-			hotBath->time /= 10;
+			this->hotBath->time /= 10;
 			break;
 		case CYCLES:
-			cycles /= 10;
+			this->cycles /= 10;
 			break;
 		case START:
-			start /= 10;
+			this->start /= 10;
 			break;
 		default:
 			error("No item selected getSelected executed!");
@@ -105,9 +107,9 @@ void Thermocycler::confirm() {
 		error("Thermocycler started, can't go confirm now.");
 		return;
 	}
-
-	debug("confirmed");
+	this->screen->confirm();
 	this->selectedInput++;
+
 	this->isDirty = true;
 
 	if (this->selectedInput == STARTED) {
@@ -127,6 +129,8 @@ void Thermocycler::back() {
 		error("Thermocycler started, can't go back now.");
 		return;
 	}
+
+	this->screen = this->screen->back();
 
 	if (this->selectedInput == 1) {
 		error("Can't go back no more!");

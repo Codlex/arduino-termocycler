@@ -5,6 +5,7 @@
 #include "bath/BathFactory.cpp"
 #include "StateLogic.h"
 #include "Translator.cpp"
+#include "../view/Screen.h"
 
 class StateLogic;
 class Translator;
@@ -13,6 +14,7 @@ class Thermocycler {
 private:
 	StateLogic* stateLogic;
 	Translator* translator;
+	Screen* screen = new Screen();
 
 	int selectedInput = 1;
 
