@@ -5,6 +5,7 @@
 
 #include "../logger/Logger.h"
 #include "../logic/Thermocycler.h"
+#include "LCD.h"
 
 extern uint8_t SmallFont[];
 extern uint8_t BigFont[];
@@ -31,15 +32,15 @@ public:
 	}
 
 	void init() {
-//		LCD::instance()->InitLCD(LANDSCAPE);
-//		LCD::instance()->setColor(0, 0, 255);
-//		LCD::instance()->setBackColor(0, 0, 0);
-//		LCD::instance()->clrScr();
-//		LCD::instance()->setFont(BigFont);
-//		LCD::instance()->print("Codlex Thermocycler System", CENTER, 10);
-//		LCD::instance()->setFont(SevenSegNumFont);
-//		// screen->print("1337", CENTER, 150);
-//		LCD::instance()->setFont(SevenSegNumFont);
+		LCD::instance()->InitLCD(LANDSCAPE);
+		LCD::instance()->setColor(0, 0, 255);
+		LCD::instance()->setBackColor(0, 0, 0);
+		LCD::instance()->clrScr();
+		LCD::instance()->setFont(BigFont);
+		LCD::instance()->print("Codlex Thermocycler System", CENTER, 10);
+		LCD::instance()->setFont(SevenSegNumFont);
+		// screen->print("1337", CENTER, 150);
+		LCD::instance()->setFont(SevenSegNumFont);
 		updateGUI();
 	}
 
@@ -52,13 +53,13 @@ public:
 
 
 	void selected() {
-//		LCD::instance()->setColor(0, 0, 0);
-//		LCD::instance()->setBackColor(0, 0, 255);
+		LCD::instance()->setColor(0, 0, 0);
+		LCD::instance()->setBackColor(0, 0, 255);
 	}
 
 	void deselect() {
-//		LCD::instance()->setColor(0, 0, 255);
-//		LCD::instance()->setBackColor(0, 0, 0);
+		LCD::instance()->setColor(0, 0, 255);
+		LCD::instance()->setBackColor(0, 0, 0);
 	}
 
 	void updateGUI() {
@@ -67,62 +68,62 @@ public:
 		int bigFontOffset = 30;
 		int segmentOffset = 60;
 
-//		LCD::instance()->setFont(BigFont);
-//		LCD::instance()->print("Cold T(C)", LEFT, base);
-//		LCD::instance()->print("Hot T(C)", RIGHT, base);
+		LCD::instance()->setFont(BigFont);
+		LCD::instance()->print("Cold T(C)", LEFT, base);
+		LCD::instance()->print("Hot T(C)", RIGHT, base);
 		base = base + bigFontOffset;
 
-//		LCD::instance()->setFont(SevenSegNumFont);
+		LCD::instance()->setFont(SevenSegNumFont);
 
 		if (this->model->isSelected(&this->model->coldBath->temperature)) {
 			selected();
 		}
-//		LCD::instance()->print(toString(buff, this->model->coldBath->temperature, 2),
-//				LEFT, base);
+		LCD::instance()->print(toString(buff, this->model->coldBath->temperature, 2),
+				LEFT, base);
 		deselect();
 
 		if (this->model->isSelected(&this->model->hotBath->temperature)) {
 			selected();
 		}
-//		LCD::instance()->print(toString(buff, this->model->hotBath->temperature, 2),
-//				RIGHT, base);
+		LCD::instance()->print(toString(buff, this->model->hotBath->temperature, 2),
+				RIGHT, base);
 		deselect();
 
 		base = base + segmentOffset;
 
-//		LCD::instance()->setFont(BigFont);
-//		LCD::instance()->print("Duration t(s)", LEFT, base);
-//		LCD::instance()->print("Duration t(s)", RIGHT, base);
+		LCD::instance()->setFont(BigFont);
+		LCD::instance()->print("Duration t(s)", LEFT, base);
+		LCD::instance()->print("Duration t(s)", RIGHT, base);
 		base = base + bigFontOffset;
 
-//		LCD::instance()->setFont(SevenSegNumFont);
+		LCD::instance()->setFont(SevenSegNumFont);
 
 		if (this->model->isSelected(&this->model->coldBath->time)) {
 			selected();
 		}
-//		LCD::instance()->print(toString(buff, this->model->coldBath->time, 3), LEFT,
-//				base);
+		LCD::instance()->print(toString(buff, this->model->coldBath->time, 3), LEFT,
+				base);
 		deselect();
 
 		if (this->model->isSelected(&this->model->hotBath->time)) {
 			selected();
 		}
-//		LCD::instance()->print(toString(buff, this->model->hotBath->time, 3), RIGHT,
-//				base);
+		LCD::instance()->print(toString(buff, this->model->hotBath->time, 3), RIGHT,
+				base);
 		deselect();
 		base = base + segmentOffset;
 
-//		LCD::instance()->setFont(BigFont);
-//		LCD::instance()->print("Cycles", CENTER, base - 50);
+		LCD::instance()->setFont(BigFont);
+		LCD::instance()->print("Cycles", CENTER, base - 50);
 		base = base + bigFontOffset;
 
-//		LCD::instance()->setFont(SevenSegNumFont);
+		LCD::instance()->setFont(SevenSegNumFont);
 
 		if (this->model->isSelected(&this->model->cycles)) {
 			selected();
 		}
-//		LCD::instance()->print(toString(buff, this->model->cycles, 5), CENTER,
-//				base - 50);
+		LCD::instance()->print(toString(buff, this->model->cycles, 5), CENTER,
+				base - 50);
 		deselect();
 
 		base = base + segmentOffset;
@@ -137,26 +138,26 @@ public:
 	}
 
 	void error(char* text) {
-//		LCD::instance()->setFont(BigFont);
-//		LCD::instance()->setColor(255, 0, 0);
-//		LCD::instance()->print(text, CENTER, 305);
+		LCD::instance()->setFont(BigFont);
+		LCD::instance()->setColor(255, 0, 0);
+		LCD::instance()->print(text, CENTER, 305);
 	}
 
 	void drawButton(char* text, int x, int y, bool isSelected) {
 		int x1 = x + 120;
 		int y1 = y + 40;
 		if (!isSelected) {
-//			LCD::instance()->drawRect(x, y, x1, y1);
-//			LCD::instance()->setColor(0, 0, 255);
+			LCD::instance()->drawRect(x, y, x1, y1);
+			LCD::instance()->setColor(0, 0, 255);
 
 		} else {
-//			LCD::instance()->fillRect(x, y, x1, y1);
-//			LCD::instance()->setColor(0, 0, 0);
-//			LCD::instance()->setBackColor(0, 0, 255);
+			LCD::instance()->fillRect(x, y, x1, y1);
+			LCD::instance()->setColor(0, 0, 0);
+			LCD::instance()->setBackColor(0, 0, 255);
 		}
 
-//		LCD::instance()->setFont(BigFont);
-//		LCD::instance()->print(text, CENTER, y + 10);
+		LCD::instance()->setFont(BigFont);
+		LCD::instance()->print(text, CENTER, y + 10);
 
 	}
 

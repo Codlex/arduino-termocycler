@@ -15,3 +15,9 @@ Screen::~Screen() {
 	// TODO Auto-generated destructor stub
 }
 
+Screen* Screen::back() {
+	return 0;
+}
+Screen* Screen::confirm() {
+	return 0;
+}

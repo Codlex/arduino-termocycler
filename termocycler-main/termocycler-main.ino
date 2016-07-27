@@ -1,5 +1,3 @@
-#include <Arduino.h>
-
 #include "logger/Logger.h"
 #include "logic/Thermocycler.h"
 #include "view/ThermocyclerView.cpp"
@@ -46,7 +44,7 @@ void loop() {
 }
 
 void updatee(unsigned long deltaT) {
-	Input.update();
+  Input.update();
   View.update();
   Thermocycler.update(deltaT);
   TemperatureSensor::update(deltaT);
