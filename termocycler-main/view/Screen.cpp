@@ -7,8 +7,10 @@
 
 #include "Screen.h"
 
-Screen::Screen() {
 
+Screen::Screen(Screen* previous, Screen* next) {
+	this->previous = previous;
+	this->next = next;
 }
 
 Screen::~Screen() {
@@ -16,8 +18,8 @@ Screen::~Screen() {
 }
 
 Screen* Screen::back() {
-	return 0;
+	return this->previous;
 }
 Screen* Screen::confirm() {
-	return 0;
+	return this->next;
 }

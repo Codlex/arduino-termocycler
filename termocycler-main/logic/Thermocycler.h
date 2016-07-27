@@ -14,7 +14,7 @@ class Thermocycler {
 private:
 	StateLogic* stateLogic;
 	Translator* translator;
-	Screen* screen = new Screen();
+	Screen* screen;
 
 	int selectedInput = 1;
 

@@ -5,11 +5,15 @@
 
 class LCD {
 private:
-	static UTFT* utft;
+	UTFT* screen;
+	static LCD* instance;
 public:
 	LCD();
 	virtual ~LCD();
-	static UTFT* instance();
+	static LCD* getInstance();
+	void init();
+	void printBig(char* text);
+
 };
 
 #endif /* TERMOCYCLER_MAIN_VIEW_LCD_H_ */

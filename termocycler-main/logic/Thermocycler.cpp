@@ -3,6 +3,7 @@
 
 #include "StateLogic.h"
 #include "../view/Screen.h"
+#include "../view/screens/SplashScreen.h"
 
 Thermocycler::Thermocycler() {
 	this->stateLogic = new StateLogic(this);
@@ -12,6 +13,7 @@ Thermocycler::Thermocycler() {
 
 	this->cycles = 100;
 	this->selectedInput = START;
+	this->screen = new SplashScreen();
 }
 
 
@@ -107,17 +109,18 @@ void Thermocycler::confirm() {
 		error("Thermocycler started, can't go confirm now.");
 		return;
 	}
-	this->screen->confirm();
+	this->screen = this->screen->confirm();
+	debug("CONFIRM");
 	this->selectedInput++;
 
-	this->isDirty = true;
-
-	if (this->selectedInput == STARTED) {
-		// validate first
-		this->isStarted = true;
-		debug("############################## CYCLING_STARTED ##############################");
-
-	}
+//	this->isDirty = true;
+//
+//	if (this->selectedInput == STARTED) {
+//		// validate first
+//		this->isStarted = true;
+//		debug("############################## CYCLING_STARTED ##############################");
+//
+//	}
 }
 
 bool Thermocycler::isSelected(void* field) {
@@ -144,6 +147,8 @@ void Thermocycler::back() {
 }
 
 void Thermocycler::update(unsigned long deltaT) {
+	this->screen->update();
+
 	if (this->isStarted) {
 		debug("############################## CYCLE(hot=%ld, cold=%ld, total=%d) ##############################",
 		this->stateLogic->hotBathImmersionCount, this->stateLogic->coldBathImmersionCount, this->cycles);

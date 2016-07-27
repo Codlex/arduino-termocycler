@@ -3,11 +3,11 @@
 #include "view/ThermocyclerView.cpp"
 #include "input/Input.cpp"
 #include "logic/bath/sensors/TemperatureSensor.cpp"
-
+#include "view/LCD.h"
 #include <NewPing.h>
 
 Thermocycler Thermocycler;
-ThermocyclerView View(&Thermocycler);
+// ThermocyclerView View(&Thermocycler);
 Input Input(&Thermocycler);
 
 unsigned long lastLoopEnd = millis();
@@ -16,14 +16,15 @@ void setup() {
   Serial.begin(9600);
   initSD();
   
-  View.init();
+//   View.init();
   Input.init();
   debug("Thermocycler started");
   Thermocycler.init();
   TemperatureSensor::init();
   // NewPing::timer_us(100, loop);
   TemperatureSensor::refreshSensors();
-
+  LCD::getInstance()->init();
+  
   lastLoopEnd = millis();
 }
 
@@ -45,7 +46,7 @@ void loop() {
 
 void updatee(unsigned long deltaT) {
   Input.update();
-  View.update();
+//  View.update();
   Thermocycler.update(deltaT);
   TemperatureSensor::update(deltaT);
 }
