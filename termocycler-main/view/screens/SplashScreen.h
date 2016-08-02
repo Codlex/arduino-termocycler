@@ -12,7 +12,7 @@
 
 class SplashScreen : public Screen {
 public:
-	SplashScreen();
+	SplashScreen(Thermocycler* thermocycler);
 	virtual ~SplashScreen();
 	virtual void update();
 protected:

@@ -1,5 +1,5 @@
-#ifndef THERMOCYCLER_CPP
-#define THERMOCYCLER_CPP
+#ifndef THERMOCYCLER_H
+#define THERMOCYCLER_H
 
 #include "../logger/Logger.h"
 #include "bath/BathFactory.cpp"
@@ -9,6 +9,7 @@
 
 class StateLogic;
 class Translator;
+class Screen;
 
 class Thermocycler {
 private:

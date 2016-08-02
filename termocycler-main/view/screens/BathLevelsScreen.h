@@ -9,12 +9,14 @@
 #define TERMOCYCLER_MAIN_VIEW_SCREENS_BATHLEVELSSCREEN_H_
 
 #include "../Screen.h"
+#include "../Field.h"
 
 class BathLevelsScreen: public Screen {
 public:
-	BathLevelsScreen(Screen* previous);
+	BathLevelsScreen(Thermocycler* thermocycler, Screen* previous);
 	virtual ~BathLevelsScreen();
-	virtual void update();
+
+
 protected:
 };
 

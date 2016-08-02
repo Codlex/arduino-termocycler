@@ -13,6 +13,9 @@ public:
 	static LCD* getInstance();
 	void init();
 	void printBig(char* text);
+	void printBig(int number, int x, int y);
+	void printBig(char* text, int x, int y);
+	void clearScreen();
 
 };
 

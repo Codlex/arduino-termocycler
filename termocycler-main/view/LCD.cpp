@@ -27,6 +27,20 @@ void LCD::init() {
 }
 
 void LCD::printBig(char* text) {
+	printBig(text, CENTER, 150);
+}
+
+void LCD::printBig(char* text, int x, int y) {
 	this->screen->setFont(BigFont);
-	this->screen->print(text, CENTER, 150);
+	this->screen->print(text, x, y);
+}
+
+void LCD::printBig(int number, int x, int y) {
+	char buffer[255];
+	sprintf(buffer, "%d", number);
+	printBig(buffer, x, y);
+}
+
+void LCD::clearScreen() {
+	this->screen->clrScr();
 }

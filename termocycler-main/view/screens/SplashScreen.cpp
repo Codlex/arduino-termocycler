@@ -10,7 +10,7 @@
 #include "../LCD.h"
 
 
-SplashScreen::SplashScreen() : Screen(0, new BathLevelsScreen(this)) {
+SplashScreen::SplashScreen(Thermocycler* thermocycler) : Screen(thermocycler, 0, new BathLevelsScreen(this->thermocycler, this), 0) {
 
 }
 

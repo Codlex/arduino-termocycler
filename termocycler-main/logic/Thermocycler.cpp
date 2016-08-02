@@ -13,7 +13,7 @@ Thermocycler::Thermocycler() {
 
 	this->cycles = 100;
 	this->selectedInput = START;
-	this->screen = new SplashScreen();
+	this->screen = new SplashScreen(this);
 }
 
 
