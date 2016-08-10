@@ -1,14 +1,14 @@
 #ifndef TERMOCYCLER_MAIN_LOGGER_LOGGER_H_
 #define TERMOCYCLER_MAIN_LOGGER_LOGGER_H_
 
-#include "../logic/Settings.cpp"
+#include "../logic/Settings.h"
 #include <stdio.h>
 #include <Arduino.h>
 #include "Time.cpp"
 #include <stdarg.h>
 #include <SPI.h>
 #include <SD.h>
-
+#include "../view/LCD.h"
 
 void static fileLog(char* string) {
 	if (Settings::LogToFile) {
@@ -43,27 +43,31 @@ void static log(char* tag, char* message) {
 			Time.days(), Time.hours(), Time.minutes(), Time.seconds(),
 			Time.milliseconds(), tag, message);
 
-	fileLog(buffer);
+	// fileLog(buffer);
 
 	Serial.print(buffer);
 	Serial.flush();
 }
 
-static void debug(char* messageFormat...) {
-	char buffer[256];
-	va_list args;
-	va_start(args, messageFormat);
-	vsprintf(buffer, messageFormat, args);
-	log("DEBUG", buffer);
-	va_end (args);
+#define debug(...) ({										\
+	char buffer[256];												\
+	sprintf(buffer, __VA_ARGS__);									\
+	log("DEBUG", buffer);											\
+})
+
+static void printToScreen(char * buffer) {
+	LCD::getInstance()->paintRed();
+	LCD::getInstance()->printBig(buffer, CENTER, 300);
+	LCD::getInstance()->paintBlue();
 }
 
 static void error(char* messageFormat...) {
-	char buffer[256];
+	char buffer[256] = {0};
 	va_list args;
 	va_start(args, messageFormat);
 	vsprintf(buffer, messageFormat, args);
 	log("ERROR", buffer);
+	printToScreen(buffer);
 	va_end (args);
 }
 

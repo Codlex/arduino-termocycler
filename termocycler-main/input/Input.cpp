@@ -27,8 +27,11 @@ private:
 	};
 
 	// code that shows the the keypad connections to the arduino terminals
-	byte rowPins[numRows] = { 0, 1, 2, 3 }; // rows 0 to 3
-	byte colPins[numCols] = { 4, 5, 6, 7 }; // columns 0 to 3
+//	byte rowPins[numRows] = { 0, 1, 2, 3 }; // rows 0 to 3
+//	byte colPins[numCols] = { 4, 5, 6, 7 }; // columns 0 to 3
+
+	byte rowPins[numRows] = { A0, A1, A2, A3 }; // rows 0 to 3
+	byte colPins[numCols] = { A4, A5, A6, A7 }; // columns 0 to 3
 
 	Keypad myKeypad = Keypad(makeKeymap(keymap), rowPins, colPins, numRows,
 			numCols);
@@ -51,6 +54,8 @@ public:
 	}
 
 	void dispatch(char key) {
+		debug("key %c", key);
+
 		if (isDigit(key)) {
 			model->enterDigit(charToInt(key));
 		} else if (isEnter(key)) {

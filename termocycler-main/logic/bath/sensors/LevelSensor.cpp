@@ -32,14 +32,15 @@ public:
 
 	unsigned long lastTimeAcked = 0;
 	int getPercentageFilled() {
-		if (millis() - lastTimeAcked > 1000) {
-			lastTimeAcked = millis();
-			// sonar->timer_stop();
-			sonar->ping_timer(echoCheck2);
-		}
-
-		float filledCM = this->emptyDistance - this->cm;
-		return (int) ((filledCM / this->emptyDistance) * 100);
+		return 100;
+//		if (millis() - lastTimeAcked > 1000) {
+//			lastTimeAcked = millis();
+//			// sonar->timer_stop();
+//			sonar->ping_timer(echoCheck2);
+//		}
+//
+//		float filledCM = this->emptyDistance - this->cm;
+//		return (int) ((filledCM / this->emptyDistance) * 100);
 	}
 
 

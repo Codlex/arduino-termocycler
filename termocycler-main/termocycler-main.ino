@@ -5,6 +5,7 @@
 #include "logic/bath/sensors/TemperatureSensor.cpp"
 #include "view/LCD.h"
 #include <NewPing.h>
+#include <MemoryFree.h>
 
 Thermocycler Thermocycler;
 // ThermocyclerView View(&Thermocycler);
@@ -13,10 +14,10 @@ Input Input(&Thermocycler);
 unsigned long lastLoopEnd = millis();
 
 void setup() {
-  Serial.begin(9600);
+  Serial.begin(250000);
   initSD();
   
-//   View.init();
+ // View.init();
   Input.init();
   debug("Thermocycler started");
   Thermocycler.init();
@@ -35,19 +36,18 @@ void checkInput() {
 void loop() {
   unsigned long currentMillis = millis();
   unsigned long deltaT = currentMillis - lastLoopEnd;
-  lastLoopEnd = currentMillis;
   
   if (deltaT > 100) {
-    // error("Processing took: %lu millis.", deltaT);
+    lastLoopEnd = currentMillis;
+    // debug("Processing took: %lu", deltaT);
   }
-    
   updatee(deltaT);
 }
 
 void updatee(unsigned long deltaT) {
-  Input.update();
-//  View.update();
+   Input.update();
+  // View.update();
   Thermocycler.update(deltaT);
-  TemperatureSensor::update(deltaT);
+  // TemperatureSensor::update(deltaT);
 }
 

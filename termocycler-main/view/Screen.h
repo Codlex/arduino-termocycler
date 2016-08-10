@@ -15,10 +15,17 @@ public:
 	Screen* confirm();
 	virtual void update();
 	virtual void onChange();
+	void processDigit(int digit);
+	void processDelete();
 protected:
 	Thermocycler* thermocycler;
 	Field** fields;
 	int numberOfFields;
+	int activeFieldIndex = -1;
+	Field* getActiveField();
+	bool nextField();
+	bool previousField();
+	bool validateScreen();
 private:
 	Screen* previous;
 	Screen* next;

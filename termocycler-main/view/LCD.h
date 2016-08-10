@@ -16,6 +16,10 @@ public:
 	void printBig(int number, int x, int y);
 	void printBig(char* text, int x, int y);
 	void clearScreen();
+	void paintRed();
+	void paintGreen();
+	void paintBlue();
+	void paintWhite();
 
 };
 

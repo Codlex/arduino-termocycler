@@ -14,7 +14,7 @@ class SplashScreen : public Screen {
 public:
 	SplashScreen(Thermocycler* thermocycler);
 	virtual ~SplashScreen();
-	virtual void update();
+	// virtual void update();
 protected:
 };
 

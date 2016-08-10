@@ -2,7 +2,7 @@
 #define BATH_H
 
 #include "../../logger/Logger.h"
-#include "../Settings.cpp"
+#include "../Settings.h"
 #include "sensors/TemperatureSensor.cpp"
 #include "sensors/LevelSensor.cpp"
 #include "WaterPump.cpp"
@@ -52,7 +52,7 @@ public:
 	unsigned long time = 0;
 	LevelSensor* level;
 
-	Bath(int temperatureSensorIndex1, int temperatureSensorIndex2, int levelEchoPin, int levelTriggerPin, int waterPumpPin) {
+	Bath(const uint8_t* temperatureSensorIndex1, const uint8_t* temperatureSensorIndex2, int levelEchoPin, int levelTriggerPin, int waterPumpPin) {
 		this->temperatureSensor1 = new TemperatureSensor(
 				temperatureSensorIndex1);
 		this->temperatureSensor2 = new TemperatureSensor(

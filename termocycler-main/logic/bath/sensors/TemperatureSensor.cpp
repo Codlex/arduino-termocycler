@@ -4,7 +4,7 @@
 #include "Arduino.h"
 #include <OneWire.h>
 #include <DallasTemperature.h>
-#include "../../Settings.cpp"
+#include "../../Settings.h"
 #include "../../../logger/Logger.h"
 
 
@@ -17,17 +17,17 @@ static int dataAge;
 class TemperatureSensor {
 
 private:
-	int sensorIndex;
-	static const unsigned long MAX_DATA_AGE = 1000;
+	const uint8_t* sensorAddress;
+	static const unsigned long MAX_DATA_AGE = 10000;
 
 public:
 
-	TemperatureSensor(int sensorIndex) {
-		this->sensorIndex = sensorIndex;
+	TemperatureSensor(const uint8_t* sensorAddress) {
+		this->sensorAddress = sensorAddress;
 	}
 
 	float getTemperature() {
-		return sensors.getTempCByIndex(sensorIndex);
+		return sensors.getTempC(this->sensorAddress);
 	}
 
 	static void update(unsigned long deltaT) {

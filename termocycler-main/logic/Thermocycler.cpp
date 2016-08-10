@@ -12,92 +12,17 @@ Thermocycler::Thermocycler() {
 	this->translator = new Translator();
 
 	this->cycles = 100;
-	this->selectedInput = START;
 	this->screen = new SplashScreen(this);
 }
 
 
-void* Thermocycler::getSelected() {
-	switch (selectedInput) {
-	case COLD_TEMPERATURE:
-		return &(coldBath->temperature);
-	case COLD_TIME:
-		return &coldBath->time;
-	case HOT_TEMPERATURE:
-		return &hotBath->temperature;
-	case HOT_TIME:
-		return &hotBath->time;
-	case CYCLES:
-		return &cycles;
-	case START:
-		return &start;
-	default:
-		error("No item selected getSelected executed!");
-		return NULL;
-	}
-}
 
 void Thermocycler::enterDigit(int digit) {
-	if (selectedInput) {
-		switch (selectedInput) {
-		case COLD_TEMPERATURE:
-			coldBath->temperature = coldBath->temperature * 10 + digit;
-			break;
-		case COLD_TIME:
-			coldBath->time = coldBath->time * 10 + digit;
-			break;
-		case HOT_TEMPERATURE:
-			hotBath->temperature = hotBath->temperature * 10 + digit;
-			break;
-		case HOT_TIME:
-			hotBath->time = hotBath->time * 10 + digit;
-			break;
-		case CYCLES:
-			cycles = cycles * 10 + digit;
-			break;
-		case START:
-			start = start * 10 + digit;
-			break;
-		default:
-			error("No item selected getSelected executed!");
-		}
-
-		this->isDirty = true;
-		debug("Digit entered!");
-
-	} else {
-		error("Tried to input but no element selected");
-	}
+	this->screen->processDigit(digit);
 }
 
 void Thermocycler::deleteDigit() {
-	if (selectedInput) {
-		switch (selectedInput) {
-		case COLD_TEMPERATURE:
-			this->coldBath->temperature /= 10;
-			break;
-		case COLD_TIME:
-			this->coldBath->time /= 10;
-			break;
-		case HOT_TEMPERATURE:
-			this->hotBath->temperature /= 10;
-			break;
-		case HOT_TIME:
-			this->hotBath->time /= 10;
-			break;
-		case CYCLES:
-			this->cycles /= 10;
-			break;
-		case START:
-			this->start /= 10;
-			break;
-		default:
-			error("No item selected getSelected executed!");
-		}
-		this->isDirty = true;
-	} else {
-		error("Tried to input but no element selected");
-	}
+	this->screen->processDelete();
 }
 
 void Thermocycler::exit() {
@@ -164,18 +89,18 @@ void Thermocycler::update(unsigned long deltaT) {
 			reset();
 		}
 	} else {
-		 this->hotBath->logStatus();
-		 this->coldBath->logStatus();
+		 // this->hotBath->logStatus();
+		 // this->coldBath->logStatus();
 	}
 }
 
 void Thermocycler::logStatus() {
-	debug("ThermocyclerStatus(state=%s, immersion=%lu ms, targetImmersion=%lu ms)",
-			StateToString(this->stateLogic->getCurrentState()),
-			this->stateLogic->calculateImmersionTime(),
-			this->stateLogic->getTargetImmersionTime());
-	this->hotBath->logStatus();
-	this->coldBath->logStatus();
+//	debug("ThermocyclerStatus(state=%s, immersion=%lu ms, targetImmersion=%lu ms)",
+//			StateToString(this->stateLogic->getCurrentState()),
+//			this->stateLogic->calculateImmersionTime(),
+//			this->stateLogic->getTargetImmersionTime());
+	//this->hotBath->logStatus();
+	//this->coldBath->logStatus();
 }
 
 void Thermocycler::reset() {

@@ -2,7 +2,7 @@
 #define HOT_BATH_H
 
 #include "../../../logger/Logger.h"
-#include "../../Settings.cpp"
+#include "../../Settings.h"
 #include "../Bath.cpp"
 #include "Heater.cpp"
 

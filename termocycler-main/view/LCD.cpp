@@ -30,6 +30,22 @@ void LCD::printBig(char* text) {
 	printBig(text, CENTER, 150);
 }
 
+void LCD::paintRed() {
+	this->screen->setColor(255, 0, 0);
+}
+
+void LCD::paintBlue() {
+	this->screen->setColor(0, 0, 255);
+}
+
+void LCD::paintGreen() {
+	this->screen->setColor(0, 255, 0);
+}
+
+void LCD::paintWhite() {
+	this->screen->setColor(255, 255, 255);
+}
+
 void LCD::printBig(char* text, int x, int y) {
 	this->screen->setFont(BigFont);
 	this->screen->print(text, x, y);

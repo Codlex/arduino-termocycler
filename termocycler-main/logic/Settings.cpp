@@ -1,67 +1,8 @@
-#ifndef SETTINGS_CPP
-#define SETTINGS_CPP
+#include "Settings.h"
 
-#include "Arduino.h"
-
-class Settings {
-public:
-	/**
-	 * Bath.
-	 */
-	const static int BathMinimumLevel = 80;
-	const static int BathDepth = 23;
-	const static int LevelEpsilon = 1;
-	const static int TemperatureEpsilon = 1;
-	const static int OneWireTemperatureSensor = A11;
-
-	/**
-	 * Hot Bath.
-	 */
-	const static int HotBathLevelEchoPin = A15;
-	const static int HotBathLevelTriggerPin = A14;
-	const static int HotBathHeaterPin = A7;
-	const static int HotBathWaterPump = A5;
-	const static int HotBathCirculationWaterPump = A4;
-
-	// indices for one wire
-	const static int HotBathTemperatureSensor1 = 0;
-	const static int HotBathTemperatureSensor2 = 1;
-	// for security only
-	const static int HotBathTemperatureSensor3 = 4;
-
-
-	/**
-	 * ColdBath.
-	 */
-	const static int ColdBathLevelEchoPin = A13;
-	const static int ColdBathLevelTriggerPin = A12;
-	const static int ColdBathCoolerPin = A0;
-	const static int ColdBathWaterPump = A2;
-
-	// indices for one wire
-	const static int ColdBathTemperatureSensor1 = 2;
-	const static int ColdBathTemperatureSensor2 = 3;
-
-	const static int ColdBathTemperatureSensorAntifriz = 5;
-
-
-
-	/**
-	 * Translator
-	 */
-	const static int TranslatorPowerPin = A6;
-	const static int TranslatorPulsePin = A1;
-	const static int TranslatorToColdDirection = A3;
-
-	/**
-	 * Logger.
-	 */
-	const static int SDSelectChip = 53;
-	constexpr static char* LogFile = "debug2.log";
-	const static bool LogToFile = true;
-	const static bool LogToSerial = true;
-
-};
-
-
-#endif
+byte Settings::HotBathTemperatureSensor1[8] = {0x28, 0x5E, 0x1F, 0xCC, 0x6, 0x0, 0x0, 0xCA};
+byte Settings::HotBathTemperatureSensor2[8] = {0x28, 0xFF, 0x8C, 0xE, 0x3, 0x15, 0x2, 0xFC};
+byte Settings::HotBathTemperatureSensor3[8] = {0x28, 0xFF, 0x4B, 0x7, 0x4, 0x15, 0x3, 0x38};
+byte Settings::ColdBathTemperatureSensor1[8] = {0x28, 0xFF, 0x96, 0xE5, 0x2, 0x15, 0x2, 0x4B};
+byte Settings::ColdBathTemperatureSensor2[8] = {0x28, 0xFF, 0xA9, 0x10, 0x3, 0x15, 0x2, 0xFB};
+byte Settings::ColdBathTemperatureSensorAntifriz[8] = {0x28, 0xFF, 0xAF, 0xF7, 0x35, 0x16, 0x3, 0xAC};
