@@ -47,7 +47,10 @@ void LCD::paintWhite() {
 }
 
 void LCD::printBig(char* text, int x, int y) {
+
+
 	this->screen->setFont(BigFont);
+
 	this->screen->print(text, x, y);
 }
 

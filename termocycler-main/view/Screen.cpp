@@ -76,6 +76,7 @@ void Screen::onChange() {
 }
 
 void Screen::processDigit(int digit) {
+	onChange();
 	Field* field = getActiveField();
 	if (field) {
 		field->processDigit(digit);
@@ -85,6 +86,7 @@ void Screen::processDigit(int digit) {
 }
 
 void Screen::processDelete() {
+	onChange();
 	Field* field = getActiveField();
 	if (field) {
 		field->processDelete();
